@@ -438,7 +438,7 @@ function App() {
       </form>
       <br />
       {escuelas.map((escuela, index)=>(
-        <a href={pdfUrl} target="_blank" rel="noopener noreferrer" key={index} download={`SET4 escuela #${index+1}.pdf`}>
+        <a href={pdfUrl} target="_blank" rel="noopener noreferrer" key={index}>
           <Button className="mb-3" variant="secondary" key={index} onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])}>Generar PDF de Escuela #{index+1}</Button>
       </a>
       ))}
