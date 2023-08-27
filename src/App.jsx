@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Accordion from 'react-bootstrap/Accordion';
 import "./App.css"
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function App() {
   const [id,setId] = useState(1)
@@ -12,6 +13,18 @@ function App() {
   const {register, handleSubmit} = useForm()
   const [pdfUrl, setPdfUrl] = useState(null);
   const [escuelas, setEscuelas] = useState([{id:id}]);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = (url) => {
+    setPdfUrl(url);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setPdfUrl(null);
+    setShowModal(false);
+  };
 
   console.log(data)
 
@@ -262,7 +275,7 @@ function App() {
   
   return (
     <div className='main'>
-      <form onChange={handleSubmit(onSubmit)} className='form'>
+      <form onChange={handleSubmit(onSubmit)} className='form' style={{position:"relative"}}>
         <Accordion defaultActiveKey="0" className="mb-3 mt-3 custom-accordion ">
           <Accordion.Item eventKey="0">
             <Accordion.Header>Período</Accordion.Header>
@@ -438,16 +451,37 @@ function App() {
       </form>
       <br />
       {escuelas.map((escuela, index)=>(
-        <a href={pdfUrl} target="_blank" rel="noopener noreferrer" key={index}>
           <Button className="mb-3" variant="secondary" key={index} onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])}>Generar PDF de Escuela #{index+1}</Button>
-      </a>
       ))}
-      {/* {pdfUrl && (
+      {pdfUrl && (
         <div>
           <h3>Previsualización del PDF</h3>
-          <iframe title="PDF Preview" src={pdfUrl} width="100%" height="500px"></iframe>
+          <a href={pdfUrl} target="_blank" rel="noreferrer" >Abrir PDF en otra página</a>
         </div>
-      )} */}
+      )}
+      <div>
+      {/* Botón para abrir el modal */}
+      <Button variant="primary" onClick={() => openModal(pdfUrl)}>
+        Abrir PDF
+      </Button>
+
+      {/* Modal */}
+      <Modal show={showModal} onHide={closeModal} size="xl">
+        <Modal.Header closeButton>
+          <Modal.Title>Previsualización del PDF</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* iframe para mostrar el PDF */}
+          {pdfUrl && <iframe title="PDF Preview" src={pdfUrl} width="100%" height="500px"></iframe>}
+        </Modal.Body>
+        <Modal.Footer>
+          {/* Botón de cerrar */}
+          <Button variant="secondary" onClick={closeModal}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
     </div>
   );
 }
