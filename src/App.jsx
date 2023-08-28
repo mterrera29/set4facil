@@ -16,6 +16,16 @@ function App() {
 
   const [showModal, setShowModal] = useState(false);
 
+  const handleDownloadPDF = () => {
+    if (pdfUrl) {
+      const a = document.createElement("a");
+      a.href = pdfUrl;
+      a.download = "formulario_editado.pdf";
+      a.target = "_blank"; // Abrir en una nueva pestaña
+      a.click();
+    }
+  };
+
   const openModal = (url) => {
     setPdfUrl(url);
     setShowModal(true);
@@ -451,11 +461,12 @@ function App() {
       </form>
       <br />
       {escuelas.map((escuela, index)=>(
-          <Button className="mb-3" variant="secondary" key={index} onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`]) && openModal(pdfUrl)}>Generar PDF de Escuela #{index+1}</Button>
+          <Button className="mb-3" variant="secondary" key={index} onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])}>Generar PDF de Escuela #{index+1}</Button>
       ))}
       {pdfUrl && (
         <div>
           <h3>Previsualización del PDF</h3>
+          <Button onClick={handleDownloadPDF}>Descargar</Button>
           <a href={pdfUrl} target="_blank" rel="noreferrer" >Abrir PDF en otra página</a>
         </div>
       )}
