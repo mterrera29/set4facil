@@ -57,7 +57,7 @@ function App() {
 
   const handleGeneratePDF = async (escuela) => {
     console.log(escuela)
-    const pdfBytes = await fetch('/public/formulario.pdf').then((res) => res.arrayBuffer());
+    const pdfBytes = await fetch('/assets/formulario.pdf').then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(pdfBytes);
 
     const fecha = `${escuela.fechaDia} / ${escuela.fechaMes} / ${escuela.fechaAño}`
