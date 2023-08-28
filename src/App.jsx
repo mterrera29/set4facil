@@ -451,7 +451,7 @@ function App() {
       </form>
       <br />
       {escuelas.map((escuela, index)=>(
-          <Button className="mb-3" variant="secondary" key={index} onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])}>Generar PDF de Escuela #{index+1}</Button>
+          <Button className="mb-3" variant="secondary" key={index} onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`]) && openModal(pdfUrl)}>Generar PDF de Escuela #{index+1}</Button>
       ))}
       {pdfUrl && (
         <div>
@@ -461,9 +461,9 @@ function App() {
       )}
       <div>
       {/* Botón para abrir el modal */}
-      <Button variant="primary" onClick={() => openModal(pdfUrl)}>
+      {/* <Button variant="primary" onClick={() => openModal(pdfUrl)}>
         Abrir PDF
-      </Button>
+      </Button> */}
 
       {/* Modal */}
       <Modal show={showModal} onHide={closeModal} size="xl">
