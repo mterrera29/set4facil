@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Accordion from 'react-bootstrap/Accordion';
 import "./App.css"
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 
 function App() {
   const [id,setId] = useState(1)
@@ -14,27 +13,6 @@ function App() {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [escuelas, setEscuelas] = useState([{id:id}]);
 
-  const [showModal, setShowModal] = useState(false);
-
-  const handleDownloadPDF = () => {
-    if (pdfUrl) {
-      const a = document.createElement("a");
-      a.href = pdfUrl;
-      a.download = "formulario_editado.pdf";
-      a.target = "_blank"; // Abrir en una nueva pestaña
-      a.click();
-    }
-  };
-
-  const openModal = (url) => {
-    setPdfUrl(url);
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setPdfUrl(null);
-    setShowModal(false);
-  };
 
   console.log(data)
 
@@ -280,7 +258,6 @@ function App() {
   for (let i = 1990; i <= 2023; i++) {
     optionsMuchosAños.push(<option key={i} value={i}>{i}</option>);
   }
-  const fecha = `${data.fechaDia} / ${data.fechaMes} / ${data.fechaAño}`
   const lugarFecha = `${data.lugar}, ${data.lugarFechaDia} / ${data.lugarFechaMes} / ${data.lugarFechaAño}`
   
   return (
@@ -461,38 +438,11 @@ function App() {
       </form>
       <br />
       {escuelas.map((escuela, index)=>(
-          <Button className="mb-3" variant="secondary" key={index} onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])}>Generar PDF de Escuela #{index+1}</Button>
-      ))}
-      {pdfUrl && (
-        <div>
-          <h3>Previsualización del PDF</h3>
-          <Button onClick={handleDownloadPDF}>Descargar</Button>
-          <a href={pdfUrl} target="_blank" rel="noreferrer" >Abrir PDF en otra página</a>
-        </div>
-      )}
-      <div>
-      {/* Botón para abrir el modal */}
-      {/* <Button variant="primary" onClick={() => openModal(pdfUrl)}>
-        Abrir PDF
-      </Button> */}
-
-      {/* Modal */}
-      <Modal show={showModal} onHide={closeModal} size="xl">
-        <Modal.Header closeButton>
-          <Modal.Title>Previsualización del PDF</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {/* iframe para mostrar el PDF */}
-          {pdfUrl && <iframe title="PDF Preview" src={pdfUrl} width="100%" height="500px"></iframe>}
-        </Modal.Body>
-        <Modal.Footer>
-          {/* Botón de cerrar */}
-          <Button variant="secondary" onClick={closeModal}>
-            Cerrar
+          <a href={pdfUrl} target="_blank" rel="noreferrer" download={`SET4 escuela #${index+1}.pdf`} key={index}>
+          <Button className="mb-3" variant="secondary" key={index} onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])}>Descargar SET4 de Escuela #{index+1}
           </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+          </a>
+      ))}
     </div>
   );
 }
