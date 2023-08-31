@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import Form from 'react-bootstrap/Form';
 import Accordion from 'react-bootstrap/Accordion';
 import "./App.css"
-import Button from 'react-bootstrap/Button';
+import { Button, Modal } from 'react-bootstrap';
 
 function App() {
   const [id,setId] = useState(1)
@@ -12,6 +12,10 @@ function App() {
   const {register, handleSubmit} = useForm()
   const [pdfUrl, setPdfUrl] = useState(null);
   const [escuelas, setEscuelas] = useState([{id:id}]);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 
   console.log(data)
@@ -41,7 +45,6 @@ function App() {
   }, [data, dataLocal])
 
   const saveLocal = () => {localStorage.setItem(`data`, JSON.stringify(data)) };
-
 
   const handleGeneratePDF = async (escuela) => {
     console.log(escuela)
@@ -235,6 +238,26 @@ function App() {
     const url = URL.createObjectURL(blob);
     setPdfUrl(url); // Actualizar la URL para la previsualización
   };
+  console.log(pdfUrl)
+
+  const handleDownloadPDF = (escuela, index) => {
+
+    // Crear un enlace temporal para descargar el PDF
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = `SET4 escuela #${index + 1}.pdf`;
+    link.click();
+  };
+
+  const handleShowPDF = () => {
+    // Crear un enlace temporal para descargar el PDF
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.click();
+  };
+
 
   const onSubmit = (data)=>{
     setData(data);
@@ -438,10 +461,38 @@ function App() {
       </form>
       <br />
       {escuelas.map((escuela, index)=>(
-          <a href={pdfUrl} target="_blank" rel="noreferrer" download={`SET4 escuela #${index+1}.pdf`} key={index}>
-          <Button className="mb-3" variant="secondary" key={index} onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])}>Descargar SET4 de Escuela #{index+1}
+           <div key={index}>
+            <Button  className="mb-3" variant="secondary" onClick={()=>handleGeneratePDF(data.escuelas[`escuela${escuela.id}`]) && handleShow() }>
+             Generar SET4 de Escuela #{index + 1}
+           </Button>
+           <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>SET 4 Escuela #{index + 1}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+
+           <Button  className="mb-3" variant="secondary" onClick={()=>handleDownloadPDF(escuela, index)}>
+             Descargar
+           </Button>
+             <Button className="mb-3" variant="secondary" onClick={()=>handleShowPDF(escuela, index)}>
+               Mostrar en pestaña nueva
+             </Button>
+             <iframe
+            title="PDF Viewer"
+            src={pdfUrl}
+            style={{ width: '100%', height: '500px' }}
+          />
+          </div>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cerrar
           </Button>
-          </a>
+        </Modal.Footer>
+      </Modal>
+         </div>
       ))}
     </div>
   );
