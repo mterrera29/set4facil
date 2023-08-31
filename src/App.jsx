@@ -251,12 +251,16 @@ function App() {
 
   const handleShowPDF = () => {
     // Crear un enlace temporal para descargar el PDF
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.click();
+    window.open(pdfUrl, '_blank');
   };
+
+  const handlePrintPDF = () => {
+      const printWindow = window.open(pdfUrl, '_blank');
+      printWindow.onload = () => {
+        printWindow.print();
+      };
+    }
+  
 
 
   const onSubmit = (data)=>{
@@ -471,20 +475,16 @@ function App() {
         </Modal.Header>
         <Modal.Body>
           <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-
            <Button  className="mb-3" variant="secondary" onClick={()=>handleDownloadPDF(escuela, index)}>
              Descargar
            </Button>
              <Button className="mb-3" variant="secondary" onClick={()=>handleShowPDF(escuela, index)}>
                Mostrar en pestaña nueva
              </Button>
-             <iframe
-            title="PDF Viewer"
-            src={pdfUrl}
-            style={{ width: '100%', height: '500px' }}
-          />
+             <Button className="mb-3" variant="secondary" onClick={()=>handlePrintPDF()}>
+               Imprimir PDF Generado
+             </Button>
           </div>
-
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
