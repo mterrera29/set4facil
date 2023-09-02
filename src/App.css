@@ -5,7 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin:auto
+  margin:auto;
+  margin-top: 20px;
 }
 .form{
   width: 100%;
