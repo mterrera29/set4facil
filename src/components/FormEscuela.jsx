@@ -1,9 +1,21 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Accordion from 'react-bootstrap/Accordion';
 import { Button} from 'react-bootstrap';
 
 const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
+  // eslint-disable-next-line no-unused-vars
+  const [texto, setTexto] = useState('');
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    const maxLength = 20; // Establece el máximo de caracteres permitidos
+
+    if (inputValue.length <= maxLength) {
+      setTexto(inputValue);
+    }
+  };
 
   const optionsDia = [];
   const optionsMes = [];
@@ -32,29 +44,29 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
     optionsMuchosAños.push(<option key={i} value={i}>{i}</option>);
   }
   return (
-    <Accordion className="mb-3 custom-accordion " key={index}>
+    <Accordion className="mb-3 custom-accordion " defaultActiveKey="0" key={index}>
       <Accordion.Item eventKey="0"> 
         <Accordion.Header>Datos de la escuela #{index + 1}</Accordion.Header>
         <Accordion.Body >
           <Form.Group className="mb-3">
             <Form.Label>Cargo del que es titular</Form.Label>
-            <Form.Control size="sm" type="text" {...register(`escuelas[escuela${escuela.id}].cargoTitular`)} />
+            <Form.Control  type="text" onChange={handleInputChange} maxLength={14} {...register(`escuelas[escuela${escuela.id}].cargoTitular`)} />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Escuela N°</Form.Label>
-            <Form.Control size="sm" type="text" name='' {...register(`escuelas.escuela${escuela.id}.escuela`)} />
+            <Form.Control  type="text" name='' onChange={handleInputChange} maxLength={8} {...register(`escuelas.escuela${escuela.id}.escuela`)} />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Distrito</Form.Label>
-            <Form.Control size="sm" type="text" name='' defaultValue=" " {...register(`escuelas.escuela${escuela.id}.distrito`)} />
+            <Form.Control  type="text" name='' onChange={handleInputChange} maxLength={18} {...register(`escuelas.escuela${escuela.id}.distrito`)} />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Cargo que desempeña actualmente</Form.Label>
-            <Form.Control type="text" name='' {...register(`escuelas.escuela${escuela.id}.cargoActual`)} />
+            <Form.Control type="text" name='' onChange={handleInputChange} maxLength={42} {...register(`escuelas.escuela${escuela.id}.cargoActual`)} />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Organismo, repartición o dependencia</Form.Label>
-            <Form.Control type="text" name='' {...register(`escuelas.escuela${escuela.id}.organismo`)} />
+            <Form.Control type="text" name='' onChange={handleInputChange} maxLength={41} {...register(`escuelas.escuela${escuela.id}.organismo`)} />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>¿Desde qué fecha?:</Form.Label>

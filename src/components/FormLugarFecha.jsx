@@ -1,7 +1,19 @@
 /* eslint-disable react/prop-types */
 import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
 
 const FormLugarFecha = ({register}) => {
+  // eslint-disable-next-line no-unused-vars
+  const [texto, setTexto] = useState('');
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    const maxLength = 20; // Establece el máximo de caracteres permitidos
+
+    if (inputValue.length <= maxLength) {
+      setTexto(inputValue);
+    }
+  };
 
   const optionsDia = [];
   const optionsMes = [];
@@ -33,7 +45,7 @@ const FormLugarFecha = ({register}) => {
     <>
       <Form.Group className="mb-3 ">
         <Form.Label>Lugar</Form.Label>
-        <Form.Control type="text" name='' {...register("lugar")} />
+        <Form.Control type="text" name=''onChange={handleInputChange} maxLength={20} {...register("lugar")} />
       </Form.Group>
       <Form.Group className="mb-3 ">
         <Form.Label>Fecha(actual): </Form.Label>

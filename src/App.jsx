@@ -12,7 +12,7 @@ import FormCompleted from './components/FormCompleted';
 function App() {
   const [id,setId] = useState(1)
   const [data, setData] = useState({})
-  const {register, handleSubmit} = useForm()
+  const {register, formState:{errors}, handleSubmit} = useForm()
   const [escuelas, setEscuelas] = useState([{id:id}]);
   const [page, setPage] = useState(0)
 
@@ -59,6 +59,7 @@ function App() {
     console.log("submit")
   }
   console.log(data)
+  console.log(errors)
   
   return (
     <div className='main'>
@@ -72,7 +73,7 @@ function App() {
     nextPage();
   }}>
         {page ===1 &&<FormPeriodo register={register} />}
-        {page ===2 &&<FormDatos register={register}/>}
+        {page ===2 &&<FormDatos register={register} errors={errors} />}
         {page ===3 &&<FormEscuelasTodas agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} />}
         {page ===4 &&<FormLugarFecha register={register}/>}
         {page ===5 &&
@@ -85,6 +86,7 @@ function App() {
           > Generar SET4</Button>
         </>
         }
+        
         {page ===6 &&<GeneratePDF escuelas={escuelas} data={data} />}
         {(page >0 && page<7 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
         <Button onClick={()=>previuosPage()}> Anterior</Button>

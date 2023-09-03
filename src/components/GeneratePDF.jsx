@@ -108,23 +108,23 @@ const GeneratePDF = ({escuelas, data}) => {
 
     page.drawText(escuela.cargoTitular, {
       x: 139,
-      y: 541,
-      size: 10,
+      y: 535,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
 
     page.drawText(escuela.escuela, {
       x: 139,
-      y: 668,
-      size: 10,
+      y: 661,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
 
     page.drawText(escuela.distrito, {
       x: 139,
-      y: 742,
+      y: 736,
       size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
@@ -133,7 +133,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(escuela.cargoActual, {
       x: 151,
       y: 584,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -141,7 +141,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(escuela.organismo, {
       x: 163,
       y: 590,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -149,7 +149,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(fecha, {
       x: 174.5,
       y: 530,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -165,7 +165,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(data.otrosTitulos, {
       x: 204,
       y: 434,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -173,7 +173,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(data.estudios, {
       x: 223,
       y: 434,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -181,7 +181,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(data.obras, {
       x: 242,
       y: 434,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -189,7 +189,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(data.comisiones, {
       x: 266,
       y: 434,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -197,7 +197,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(data.participacion, {
       x: 295,
       y: 434,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -205,7 +205,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(data.iniciativa, {
       x: 313,
       y: 434,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -213,7 +213,7 @@ const GeneratePDF = ({escuelas, data}) => {
     page.drawText(data.perfecionamiento, {
       x: 342,
       y: 434,
-      size: 10,
+      size: 9,
       color: rgb(0, 0, 0),
       rotate: degrees(90),
     });
@@ -362,7 +362,6 @@ const GeneratePDF = ({escuelas, data}) => {
           </Modal>
         </div>
       ))}
-      
     </>
   )
 }
