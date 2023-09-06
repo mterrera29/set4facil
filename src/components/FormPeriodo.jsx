@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
+import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import Accordion from 'react-bootstrap/Accordion';
 
 
@@ -32,53 +34,68 @@ const FormPeriodo = ({register}) => {
     optionsMuchosAños.push(<option key={i} value={i}>{i}</option>);
   }
   return (
-    <Accordion defaultActiveKey="0" className="mb-3 mt-3 custom-accordion ">
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Período</Accordion.Header>
-            <Accordion.Body>
-              <Form.Group className="mb-3 "> 
-                <Form.Label>Desde: </Form.Label>
-                  <div>
-                    <label>Día</label>
-                    <select {...register("desdeDia")}>
-                    <option value=""></option>
-                     {optionsDia}
-                   </select>
-                    <label>Mes</label>
-                    <select {...register("desdeMes")}>
-                    <option value=""></option>
-                     {optionsMes}
-                   </select>
-                    <label>Año</label>
-                    <select {...register("desdeAño")}>
-                    <option value=""></option>
-                     {optionsAño}
-                   </select>
-                  </div>
-              </Form.Group>
-              <Form.Group className="mb-3 ">
-                <Form.Label>Hasta: </Form.Label>
-                  <div>
-                    <label>Día</label>
-                    <select {...register("hastaDia")}>
-                     <option value=""></option>
-                     {optionsDia}
-                   </select>
-                    <label>Mes</label>
-                    <select {...register("hastaMes")}>
-                     <option value=""></option>
-                     {optionsMes}
-                   </select>
-                    <label>Año</label>
-                    <select {...register("hastaAño")}>
-                     <option value=""></option>
-                     {optionsAño}
-                   </select>
-                  </div>
-              </Form.Group>
-            </Accordion.Body>
-          </Accordion.Item >
-        </Accordion>
+    <>
+      <h1 className='titles'>1 - Período de Calificación</h1>
+      <Accordion defaultActiveKey="0" className="mb-3 mt-3 custom-accordion ">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Período</Accordion.Header>
+              <Accordion.Body>
+                <Form.Group className="mb-3 "> 
+                  <Form.Label>Desde: </Form.Label>
+                    <Row className="align-items-center">
+                       <Col xs="auto"className='col'>
+                          <label className='colLabel'>Día</label>
+                          <Form.Select {...register("desdeDia")}> 
+                          <option value=""></option>
+                           {optionsDia}
+                         </Form.Select>
+                      </Col>
+                      <Col xs="auto" className='col'>
+                        <label className='colLabel'>Mes</label>
+                        <Form.Select {...register("desdeMes")}>
+                          <option value=""></option>
+                         {optionsMes}
+                       </Form.Select>
+                      </Col>
+                      <Col xs="auto" className='col'>
+                        <label className='colLabel'>Año</label>
+                        <Form.Select {...register("desdeAño")}>
+                          <option value=""></option>
+                         {optionsAño}
+                       </Form.Select>
+                      </Col>
+                    </Row>
+                </Form.Group>
+                <Form.Group className="mb-3 ">
+                  <Form.Label>Hasta: </Form.Label>
+                  <Row className="align-items-center">
+                       <Col xs="auto"className='col'>
+                          <label className='colLabel'>Día</label>
+                          <Form.Select {...register("hastaDia")}> 
+                          <option value=""></option>
+                           {optionsDia}
+                         </Form.Select>
+                      </Col>
+                      <Col xs="auto" className='col'>
+                        <label className='colLabel'>Mes</label>
+                        <Form.Select {...register("hastaMes")}>
+                          <option value=""></option>
+                         {optionsMes}
+                       </Form.Select>
+                      </Col>
+                      <Col xs="auto" className='col'>
+                        <label className='colLabel'>Año</label>
+                        <Form.Select {...register("hastaAño")}>
+                          <option value=""></option>
+                         {optionsAño}
+                       </Form.Select>
+                      </Col>
+                    </Row>
+                </Form.Group>
+              </Accordion.Body>
+            </Accordion.Item >
+      </Accordion>
+    </>
   )
 }
 

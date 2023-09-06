@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
+import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import { useState } from 'react';
 
 const FormLugarFecha = ({register}) => {
@@ -43,26 +45,33 @@ const FormLugarFecha = ({register}) => {
   }
   return (
     <>
+      <h1 className='titles'>4 - Lugar y Fecha Actual</h1>
       <Form.Group className="mb-3 ">
         <Form.Label>Lugar</Form.Label>
         <Form.Control type="text" name=''onChange={handleInputChange} maxLength={20} {...register("lugar")} />
       </Form.Group>
       <Form.Group className="mb-3 ">
         <Form.Label>Fecha(actual): </Form.Label>
-        <Form.Group >
-          <label>Día</label>
-          <select {...register("lugarFechaDia")}>
-           {optionsDia}
-         </select>
-          <label>Mes</label>
-          <select {...register("lugarFechaMes")}>
-           {optionsMes}
-         </select>
-          <label>Año</label>
-          <select {...register("lugarFechaAño")}>
-           {optionsMuchosAños}
-         </select>
-        </Form.Group>
+        <Row className="align-items-center">
+           <Col xs="auto"className='col'>
+              <label className='colLabel'>Día</label>
+              <Form.Select {...register("lugarFechaDia")}>
+               {optionsDia}
+             </Form.Select>
+          </Col>
+          <Col xs="auto" className='col'>
+            <label className='colLabel'>Mes</label>
+            <Form.Select {...register("lugarFechaMes")}>
+             {optionsMes}
+           </Form.Select>
+          </Col>
+          <Col xs="auto" className='col'>
+            <label className='colLabel'>Año</label>
+            <Form.Select {...register("lugarFechaAño")}>
+             {optionsMuchosAños}
+           </Form.Select>
+          </Col>
+        </Row>
       </Form.Group>
     </>
   )

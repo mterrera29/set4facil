@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import Accordion from 'react-bootstrap/Accordion';
 import { Button} from 'react-bootstrap';
 
@@ -71,21 +73,29 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
           <Form.Group className="mb-3">
             <Form.Label>¿Desde qué fecha?:</Form.Label>
               <Form.Group>
-                <label>Día</label>
-                <select {...register(`escuelas.escuela${escuela.id}.fechaDia`)}>
-                 <option value=""></option>
-                 {optionsDia}
-               </select>
-                <label>Mes</label>
-                <select {...register(`escuelas.escuela${escuela.id}.fechaMes`)}>
-                 <option value=""></option>
-                 {optionsMes}
-               </select>
-                <label>Año</label>
-                <select {...register(`escuelas.escuela${escuela.id}.fechaAño`)}>
-                 <option value=""></option>
-                 {optionsMuchosAños}
-               </select>
+                <Row className="align-items-center">
+                  <Col xs="auto"className='col'>
+                     <label className='colLabel'>Día</label>
+                     <Form.Select {...register(`escuelas.escuela${escuela.id}.fechaDia`)}>
+                       <option value=""></option>
+                      {optionsDia}
+                    </Form.Select>
+                  </Col>
+                  <Col xs="auto" className='col'>
+                    <label className='colLabel'>Mes</label>
+                    <Form.Select {...register(`escuelas.escuela${escuela.id}.fechaMes`)}>
+                      <option value=""></option>
+                     {optionsMes}
+                   </Form.Select>
+                  </Col>
+                  <Col xs="auto" className='col'>
+                    <label className='colLabel'>Año</label>
+                    <Form.Select {...register(`escuelas.escuela${escuela.id}.fechaAño`)} >
+                      <option value=""></option>
+                     {optionsMuchosAños}
+                   </Form.Select>
+                  </Col>
+                </Row>
               </Form.Group>
           </Form.Group>
           <Button variant="danger" onClick={()=>{eliminarEscuela(index, escuela.id)}} className="mb-3" > Eliminar Escuela</Button>

@@ -1,11 +1,39 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from 'react-bootstrap';
+import { useState } from 'react';
 
-const CombinedPDF = ({combinePDFs, handleShow2, handleShowPDF2, handlePrintPDF2, handleClose2, showModal2, handleDownloadPDF2}) => {
+const CombinedPDF = ({combinePDFs, combinedPdfUrl, reset}) => {
+  const [showModal2, setShowModal2] = useState(false);
+
+  const handleClose2 = () => {
+    setShowModal2(false)
+    reset()
+  };
+  const handleShow2 = () => setShowModal2(true);
+
+  const handleDownloadPDF2 = () => {
+    const link = document.createElement('a');
+    link.href = combinedPdfUrl;
+    link.download = `SET4.pdf`;
+    link.click();
+  };
+
+  const handleShowPDF2 = () => {
+    window.open(combinedPdfUrl, '_blank');
+  };
+  const handlePrintPDF2 = () => {
+    const printWindow = window.open(combinedPdfUrl, '_blank');
+    printWindow.onload = () => {
+      printWindow.print();
+    };
+  }
 
   return (
     <>
-    <Button className="mb-3" variant="secondary" onClick={()=>combinePDFs()&& handleShow2()}>
+    <Button className="mb-3" variant="secondary" onClick={()=>{
+      combinePDFs()
+      handleShow2()
+      }}>
         Combinar PDFs Generados
       </Button>
       <Modal show={showModal2} onHide={handleClose2}>

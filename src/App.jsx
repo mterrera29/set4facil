@@ -6,7 +6,7 @@ import FormDatos from './components/FormDatos';
 import FormEscuelasTodas from './components/FormEscuelasTodas';
 import FormLugarFecha from './components/FormLugarFecha';
 import GeneratePDF from './components/GeneratePDF';
-import { Button } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
 import FormCompleted from './components/FormCompleted';
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
   const nextPage = ()=>{
     handleSubmit(onSubmit)
     if(page<6) return setPage(prevPage=> prevPage +1)
+    console.log("eaaa")
   }
 
   const previuosPage = ()=>{
@@ -56,10 +57,7 @@ function App() {
   const onSubmit = (data)=>{
     setData(data);
     saveLocal()
-    console.log("submit")
   }
-  console.log(data)
-  console.log(errors)
   
   return (
     <div className='main'>
@@ -88,9 +86,14 @@ function App() {
         }
         
         {page ===6 &&<GeneratePDF escuelas={escuelas} data={data} />}
-        {(page >0 && page<7 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
-        <Button onClick={()=>previuosPage()}> Anterior</Button>
-        <Button type="submit" disabled={page > 4} className={page > 4 ? "disabled" : ""}>Siguiente</Button>
+        {(page >0 && page<5 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+        <ButtonGroup className='mt-3'>
+        <Button variant="secondary" onClick={()=>previuosPage()}>{"< Anterior"}</Button>
+        <Button variant="secondary" type="submit" disabled={page > 4} className={page > 4 ? "disabled" : ""}>{"Siguiente >"}</Button>
+        </ButtonGroup>
+        </div>}
+        {(page >4 && page<7 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+        <Button className='mt-3' variant="secondary" onClick={()=>previuosPage()}> Volver</Button>
         </div>}
       </form>
       <br />

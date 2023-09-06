@@ -20,7 +20,18 @@
 .custom-accordion{
   width: 500px;
 }
+.titles{
+  text-align: center;
+}
 
+.col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.colLabel{
+  text-align: center;
+}
 @media (max-width: 768px) {
   .custom-accordion {
     width: 100%;

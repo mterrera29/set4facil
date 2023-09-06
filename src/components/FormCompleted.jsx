@@ -5,6 +5,7 @@ import Accordion from 'react-bootstrap/Accordion';
 const FormCompleted = ({data, escuelas}) => {
   return (
     <>
+      <h1 className='titles'>5 - Generar SET 4</h1>
       <Accordion defaultActiveKey="0" className="mb-3 mt-3 custom-accordion ">
         <Accordion.Item eventKey="0">
           <Accordion.Header>Período</Accordion.Header>
