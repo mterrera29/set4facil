@@ -2,11 +2,31 @@
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
+import Card from 'react-bootstrap/Card';
+
 import { useState } from 'react';
+import { useOptions } from '../Hooks/useOptions';
 
 const FormLugarFecha = ({register}) => {
+  const {optionsDia, optionsMes,  optionsMuchosAños} = useOptions()
   // eslint-disable-next-line no-unused-vars
   const [texto, setTexto] = useState('');
+
+  const dataLocal = JSON.parse(localStorage.getItem(`data`))
+
+  function formatNumber(number) {
+    return number < 10 ? `0${number}` : `${number}`;
+  }
+  const currentDate = new Date();
+  const currentDay = formatNumber(currentDate.getDate());
+  const currentMonth = formatNumber(currentDate.getMonth() + 1); // Los meses son de 0 a 11 en JavaScript
+  const currentYear = currentDate.getFullYear();
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -15,64 +35,65 @@ const FormLugarFecha = ({register}) => {
     if (inputValue.length <= maxLength) {
       setTexto(inputValue);
     }
-  };
+    };
 
-  const optionsDia = [];
-  const optionsMes = [];
-  const optionsAño = [];
-  const optionsMuchosAños = [];
-
-  function formatNumber(number) {
-    return number < 10 ? `0${number}` : `${number}`;
-  }
-  
-  for (let i = 1; i <= 31; i++) {
-    const formattedDia = formatNumber(i);
-    optionsDia.push(<option key={formattedDia} value={formattedDia}>{formattedDia}</option>);
-  }
-  
-  for (let i = 1; i <= 12; i++) {
-    const formattedMes = formatNumber(i);
-    optionsMes.push(<option key={formattedMes} value={formattedMes}>{formattedMes}</option>);
-  }
-  
-  for (let i = 21; i <= 23; i++) {
-    const formattedAño = formatNumber(i);
-    optionsAño.push(<option key={formattedAño} value={formattedAño}>{formattedAño}</option>);
-  }
-  for (let i = 1990; i <= 2023; i++) {
-    optionsMuchosAños.push(<option key={i} value={i}>{i}</option>);
-  }
   return (
     <>
       <h1 className='titles'>4 - Lugar y Fecha Actual</h1>
-      <Form.Group className="mb-3 ">
-        <Form.Label>Lugar</Form.Label>
-        <Form.Control type="text" name=''onChange={handleInputChange} maxLength={20} {...register("lugar")} />
-      </Form.Group>
-      <Form.Group className="mb-3 ">
-        <Form.Label>Fecha(actual): </Form.Label>
-        <Row className="align-items-center">
-           <Col xs="auto"className='col'>
-              <label className='colLabel'>Día</label>
-              <Form.Select {...register("lugarFechaDia")}>
-               {optionsDia}
-             </Form.Select>
+
+      <Card style={{padding:"20px"}}>
+        <Form.Group className="mb-3 ">
+          <Form.Label>Lugar</Form.Label>
+          <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: 20}} defaultValue={dataLocal.lugar} {...register("lugar")} />
+        </Form.Group>
+        <Form.Group className="mb-3 ">
+          <Form.Label>Fecha(actual): </Form.Label>
+          <Row className="align-items-center">
+          <Col xs="auto"className='col'>
+              <FormControl sx={{minWidth: 70}} size="small">
+                <InputLabel id="dia" className='colLabel'>Día</InputLabel>
+                <Select 
+                  labelId="dia"
+                  id="demo-simple-select"
+                  label="Dia"
+                  defaultValue={currentDay}
+                  {...register(`lugarFechaDia`)}> 
+                <MenuItem value=""></MenuItem>
+                 {optionsDia}
+               </Select>
+              </FormControl>
           </Col>
           <Col xs="auto" className='col'>
-            <label className='colLabel'>Mes</label>
-            <Form.Select {...register("lugarFechaMes")}>
-             {optionsMes}
-           </Form.Select>
+            <FormControl sx={{minWidth: 70 }} size="small">
+              <InputLabel id="mes" className='colLabel'>Mes</InputLabel>
+              <Select 
+                labelId="mes"
+                id="demo-simple-select2"
+                label="Mes"
+                defaultValue={currentMonth}
+                {...register(`lugarFechaMes`)}>
+                <MenuItem value=""></MenuItem>
+               {optionsMes}
+             </Select>
+            </FormControl>
           </Col>
           <Col xs="auto" className='col'>
-            <label className='colLabel'>Año</label>
-            <Form.Select {...register("lugarFechaAño")}>
-             {optionsMuchosAños}
-           </Form.Select>
+            <FormControl sx={{minWidth: 70 }} size="small">
+              <InputLabel id="año" className='colLabel'>Año</InputLabel>
+              <Select 
+                labelId="año"
+                id="demo-simple-select3"
+                label="Año"
+                defaultValue={currentYear}
+                {...register(`lugarFechaAño`)}>
+                <MenuItem value=""></MenuItem>
+               {optionsMuchosAños}
+             </Select>
+            </FormControl>
           </Col>
-        </Row>
-      </Form.Group>
+          </Row>
+        </Form.Group>
+      </Card>
     </>
   )
 }

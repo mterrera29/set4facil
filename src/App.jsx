@@ -6,8 +6,10 @@ import FormDatos from './components/FormDatos';
 import FormEscuelasTodas from './components/FormEscuelasTodas';
 import FormLugarFecha from './components/FormLugarFecha';
 import GeneratePDF from './components/GeneratePDF';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import FormCompleted from './components/FormCompleted';
+import Card from 'react-bootstrap/Card';
 
 function App() {
   const [id,setId] = useState(1)
@@ -56,46 +58,47 @@ function App() {
   
   const onSubmit = (data)=>{
     setData(data);
-    saveLocal()
   }
   
   return (
     <div className='main'>
+      <Card style={{padding:"20px"}}>
         {
-          page ===0 &&<Button onClick={()=>nextPage()}> Comenzar</Button>
+          page ===0 &&<Button variant="contained" onClick={()=>nextPage()}> Comenzar</Button>
         }
-      
-      <form onChange={handleSubmit(onSubmit)} className='form' style={{position:"relative"}} onSubmit={(e) => {
-    e.preventDefault(); // Previene la recarga de la página
-    handleSubmit(onSubmit)();
-    nextPage();
-  }}>
-        {page ===1 &&<FormPeriodo register={register} />}
-        {page ===2 &&<FormDatos register={register} errors={errors} />}
-        {page ===3 &&<FormEscuelasTodas agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} />}
-        {page ===4 &&<FormLugarFecha register={register}/>}
-        {page ===5 &&
-        <>
-          <FormCompleted data={data} escuelas={escuelas} />
-          <Button onClick={()=>{
-            handleSubmit(onSubmit)
-            nextPage()
-            }}
-          > Generar SET4</Button>
-        </>
-        }
-        
-        {page ===6 &&<GeneratePDF escuelas={escuelas} data={data} />}
-        {(page >0 && page<5 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
-        <ButtonGroup className='mt-3'>
-        <Button variant="secondary" onClick={()=>previuosPage()}>{"< Anterior"}</Button>
-        <Button variant="secondary" type="submit" disabled={page > 4} className={page > 4 ? "disabled" : ""}>{"Siguiente >"}</Button>
-        </ButtonGroup>
-        </div>}
-        {(page >4 && page<7 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
-        <Button className='mt-3' variant="secondary" onClick={()=>previuosPage()}> Volver</Button>
-        </div>}
-      </form>
+        <form onChange={handleSubmit(onSubmit)} className='form' style={{position:"relative"}} onSubmit={(e) => {
+            e.preventDefault(); // Previene la recarga de la página
+            handleSubmit(onSubmit)();
+            nextPage();
+          }}>
+          {page ===1 &&<FormPeriodo register={register} />}
+          {page ===2 &&<FormDatos register={register} errors={errors} />}
+          {page ===3 &&<FormEscuelasTodas agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} />}
+          {page ===4 &&<FormLugarFecha register={register}/>}
+          {page ===5 &&
+          <>
+            <FormCompleted data={data} escuelas={escuelas} />
+            <Button variant="contained" onClick={()=>{
+              handleSubmit(onSubmit)
+              nextPage()
+              saveLocal()
+              }}
+            > Generar SET4</Button>
+          </>
+          }
+          
+          {page ===6 &&<GeneratePDF escuelas={escuelas} data={data} />}
+          {(page >0 && page<5 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+          <ButtonGroup variant="contained" aria-label="outlined secondary button group" className='mt-3'>
+          <Button  onClick={()=>previuosPage()}>{"< Anterior"}</Button>
+          <Button  type="submit" disabled={page > 4} className={page > 4 ? "disabled" : ""}>{"Siguiente >"}</Button>
+          </ButtonGroup>
+          </div>}
+          {(page >4 && page<7 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+          <Button className='mt-3' color="primary" variant="outlined" onClick={()=>previuosPage()}>{"< Volver"}</Button>
+          </div>}
+        </form>
+      </Card>
       <br />
     </div>
   );

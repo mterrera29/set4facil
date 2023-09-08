@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import FormEscuela from './FormEscuela'
-import { Button} from 'react-bootstrap';
+import Button from '@mui/material/Button';
 
 const FormEscuelasTodas = ({agregarEscuela, register, escuelas, eliminarEscuela}) => {
   return (
@@ -9,7 +9,7 @@ const FormEscuelasTodas = ({agregarEscuela, register, escuelas, eliminarEscuela}
       {escuelas.map((escuela, index) => (
         <FormEscuela key={index} index={index} register={register} escuela={escuela} eliminarEscuela={eliminarEscuela} />
       ))}
-      <Button onClick={agregarEscuela} className="mb-3" >Agregar otra Escuela</Button>
+      <Button size="small" variant="contained" color="success" onClick={agregarEscuela} className="mb-3" >Agregar otra Escuela</Button>
     </>
   )
 }

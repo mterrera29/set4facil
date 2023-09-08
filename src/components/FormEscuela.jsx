@@ -3,12 +3,32 @@ import { useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import Accordion from 'react-bootstrap/Accordion';
-import { Button} from 'react-bootstrap';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TextField from '@mui/material/TextField';
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+import Button from '@mui/material/Button';
+import { useOptions } from '../Hooks/useOptions';
 
 const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
+  const {optionsDia, optionsMes, optionsMuchosAños} = useOptions()
   // eslint-disable-next-line no-unused-vars
   const [texto, setTexto] = useState('');
+  const [expanded, setExpanded] = useState('panel1');
+
+  const dataLocal = JSON.parse(localStorage.getItem(`data`))
+
+  const handleChange = () => (event, newExpanded) => {
+    setExpanded(newExpanded ? `panel${index+1}`: false);
+  };
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -19,88 +39,88 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
     }
   };
 
-  const optionsDia = [];
-  const optionsMes = [];
-  const optionsAño = [];
-  const optionsMuchosAños = [];
-
-  function formatNumber(number) {
-    return number < 10 ? `0${number}` : `${number}`;
-  }
-  
-  for (let i = 1; i <= 31; i++) {
-    const formattedDia = formatNumber(i);
-    optionsDia.push(<option key={formattedDia} value={formattedDia}>{formattedDia}</option>);
-  }
-  
-  for (let i = 1; i <= 12; i++) {
-    const formattedMes = formatNumber(i);
-    optionsMes.push(<option key={formattedMes} value={formattedMes}>{formattedMes}</option>);
-  }
-  
-  for (let i = 21; i <= 23; i++) {
-    const formattedAño = formatNumber(i);
-    optionsAño.push(<option key={formattedAño} value={formattedAño}>{formattedAño}</option>);
-  }
-  for (let i = 1990; i <= 2023; i++) {
-    optionsMuchosAños.push(<option key={i} value={i}>{i}</option>);
-  }
   return (
-    <Accordion className="mb-3 custom-accordion " defaultActiveKey="0" key={index}>
-      <Accordion.Item eventKey="0"> 
-        <Accordion.Header>Datos de la escuela #{index + 1}</Accordion.Header>
-        <Accordion.Body >
+    <Accordion className="mb-3 custom-accordion " expanded={expanded === `panel${index+1}`} onChange={handleChange('panel1')} key={index}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header">
+            <Typography>
+              Datos de la escuela #{index + 1}
+            </Typography>
+        </AccordionSummary>
+        <AccordionDetails >
           <Form.Group className="mb-3">
-            <Form.Label>Cargo del que es titular</Form.Label>
-            <Form.Control  type="text" onChange={handleInputChange} maxLength={14} {...register(`escuelas[escuela${escuela.id}].cargoTitular`)} />
+            <Typography>Cargo del que es titular</Typography>
+            <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: 14}} defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.cargoTitular ?? ''} {...register(`escuelas[escuela${escuela.id}].cargoTitular`)} />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Escuela N°</Form.Label>
-            <Form.Control  type="text" name='' onChange={handleInputChange} maxLength={8} {...register(`escuelas.escuela${escuela.id}.escuela`)} />
+            <Typography>Escuela N°</Typography>
+            <TextField fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: 8}} defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.escuela ?? ''} {...register(`escuelas.escuela${escuela.id}.escuela`)} />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Distrito</Form.Label>
-            <Form.Control  type="text" name='' onChange={handleInputChange} maxLength={18} {...register(`escuelas.escuela${escuela.id}.distrito`)} />
+            <Typography>Distrito</Typography>
+            <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: 18}} defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.distrito ?? ''} {...register(`escuelas.escuela${escuela.id}.distrito`)} />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Cargo que desempeña actualmente</Form.Label>
-            <Form.Control type="text" name='' onChange={handleInputChange} maxLength={42} {...register(`escuelas.escuela${escuela.id}.cargoActual`)} />
+            <Typography>Cargo que desempeña actualmente</Typography>
+            <TextField fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: 42}} defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.cargoActual ?? ''} {...register(`escuelas.escuela${escuela.id}.cargoActual`)} />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Organismo, repartición o dependencia</Form.Label>
-            <Form.Control type="text" name='' onChange={handleInputChange} maxLength={41} {...register(`escuelas.escuela${escuela.id}.organismo`)} />
+            <Typography>Organismo, repartición o dependencia</Typography>
+            <TextField fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: 41}} defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.organismo ?? ''} {...register(`escuelas.escuela${escuela.id}.organismo`)} />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>¿Desde qué fecha?:</Form.Label>
+            <Typography>¿Desde qué fecha?:</Typography>
               <Form.Group>
-                <Row className="align-items-center">
+                <Row className="align-items-center mt-1">
                   <Col xs="auto"className='col'>
-                     <label className='colLabel'>Día</label>
-                     <Form.Select {...register(`escuelas.escuela${escuela.id}.fechaDia`)}>
-                       <option value=""></option>
-                      {optionsDia}
-                    </Form.Select>
+                      <FormControl sx={{minWidth: 70}} size="small">
+                        <InputLabel id="dia" className='colLabel'>Día</InputLabel>
+                        <Select 
+                          labelId="dia"
+                          id="demo-simple-select"
+                          label="Dia"
+                          defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.fechaDia ?? ''}
+                          {...register(`escuelas.escuela${escuela.id}.fechaDia`)}> 
+                        <MenuItem value=""></MenuItem>
+                         {optionsDia}
+                       </Select>
+                      </FormControl>
                   </Col>
                   <Col xs="auto" className='col'>
-                    <label className='colLabel'>Mes</label>
-                    <Form.Select {...register(`escuelas.escuela${escuela.id}.fechaMes`)}>
-                      <option value=""></option>
-                     {optionsMes}
-                   </Form.Select>
+                    <FormControl sx={{minWidth: 70 }} size="small">
+                      <InputLabel id="mes" className='colLabel'>Mes</InputLabel>
+                      <Select 
+                        labelId="mes"
+                        id="demo-simple-select2"
+                        label="Mes"
+                        defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.fechaMes ?? ''}
+                        {...register(`escuelas.escuela${escuela.id}.fechaMes`)}>
+                        <MenuItem value=""></MenuItem>
+                       {optionsMes}
+                     </Select>
+                    </FormControl>
                   </Col>
                   <Col xs="auto" className='col'>
-                    <label className='colLabel'>Año</label>
-                    <Form.Select {...register(`escuelas.escuela${escuela.id}.fechaAño`)} >
-                      <option value=""></option>
-                     {optionsMuchosAños}
-                   </Form.Select>
+                    <FormControl sx={{minWidth: 70 }} size="small">
+                      <InputLabel id="año" className='colLabel'>Año</InputLabel>
+                      <Select 
+                        labelId="año"
+                        id="demo-simple-select3"
+                        label="Año"
+                        defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.fechaAño ?? ''}
+                        {...register(`escuelas.escuela${escuela.id}.fechaAño`)}>
+                        <MenuItem value=""></MenuItem>
+                       {optionsMuchosAños}
+                     </Select>
+                    </FormControl>
                   </Col>
                 </Row>
               </Form.Group>
           </Form.Group>
-          <Button variant="danger" onClick={()=>{eliminarEscuela(index, escuela.id)}} className="mb-3" > Eliminar Escuela</Button>
-        </Accordion.Body>
-      </Accordion.Item>
+          <Button size="small" variant="outlined" color="error" onClick={()=>{eliminarEscuela(index, escuela.id)}} className="mb-3" > Eliminar Escuela</Button>
+        </AccordionDetails>
     </Accordion >
   )
 }

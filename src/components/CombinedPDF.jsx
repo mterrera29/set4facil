@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Button, Modal } from 'react-bootstrap';
+import {  Modal } from 'react-bootstrap';
 import { useState } from 'react';
+import Button from '@mui/material/Button';
 
 const CombinedPDF = ({combinePDFs, combinedPdfUrl, reset}) => {
   const [showModal2, setShowModal2] = useState(false);
@@ -30,7 +31,7 @@ const CombinedPDF = ({combinePDFs, combinedPdfUrl, reset}) => {
 
   return (
     <>
-    <Button className="mb-3" variant="secondary" onClick={()=>{
+    <Button className="mb-3" variant="outlined"  onClick={()=>{
       combinePDFs()
       handleShow2()
       }}>

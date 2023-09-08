@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect} from 'react';
-import { PDFDocument, rgb, degrees } from 'pdf-lib';
+import { PDFDocument} from 'pdf-lib';
 import IndividualPDF from './IndividualPDF';
 import CombinedPDF from './CombinedPDF';
+import { handleGeneratePDF } from './handleGeneratePDF';
 
 const GeneratePDF = ({escuelas, data}) => {
   const [pdfUrl, setPdfUrl] = useState();
@@ -30,7 +31,9 @@ const GeneratePDF = ({escuelas, data}) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready])
 
-  const handleGeneratePDF = async (escuela) => {
+  
+
+  /* const handleGeneratePDF = async (escuela) => {
     const pdfBytes = await fetch('/formulario.pdf').then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(pdfBytes);
 
@@ -222,12 +225,13 @@ const GeneratePDF = ({escuelas, data}) => {
     
     setPdfUrl(url); // Actualizar la URL para la previsualización
     setPdfUrls((prevUrls) => [...prevUrls, url]);
-  };
+  }; */
+
   console.log(pdfUrls)
 
   const meterPDFs = async () => {
     await escuelas.map((escuela) => {
-       handleGeneratePDF(data.escuelas[`escuela${escuela.id}`]);
+       handleGeneratePDF(data.escuelas[`escuela${escuela.id}`], data, lugarFecha, setPdfUrl, setPdfUrls);
     });
   };
 
@@ -252,12 +256,16 @@ const GeneratePDF = ({escuelas, data}) => {
   const combinePDFs = () => {
       meterPDFs()
   };
+
+  const generatePDF = async (escuela) => {
+    await handleGeneratePDF(escuela, data, lugarFecha, setPdfUrl, setPdfUrls);
+  };
   
   return (
     <>
       <CombinedPDF combinePDFs={combinePDFs} reset={reset} combinedPdfUrl={combinedPdfUrl} />
       {escuelas.map((escuela, index)=>(
-        <IndividualPDF key={index} index={index} handleGeneratePDF={handleGeneratePDF} data={data} escuela={escuela}  reset={reset} pdfUrl={pdfUrl}/>
+        <IndividualPDF key={index} index={index} handleGeneratePDF={generatePDF} data={data} escuela={escuela}  reset={reset} pdfUrl={pdfUrl}/>
       ))}
     </>
   )

@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { useState } from 'react';
+import Button from '@mui/material/Button';
 
 const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }) => {
   const [showModal1, setShowModal1] = useState(false);
-  
+    
   const handleCloseModal1 = () => {
     setShowModal1(false)
     reset()
@@ -33,7 +34,7 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
   return (
     <>
       <div>
-          <Button  className="mb-3" variant="secondary" 
+          <Button  className="mb-3" variant="outlined" 
           onClick={()=>{
             handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])
             handleShowModal1() 
