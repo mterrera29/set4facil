@@ -64,7 +64,7 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
         <Form.Group className="mb-3">
           <Typography>¿Desde qué fecha?:</Typography>
           <Form.Group>
-            <Row className="align-items-center mt-1">
+            <Row className="align-items-center mt-1" style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
             {
               dataItems.form.escuelaFecha.map((items)=>(
                 <Col xs="auto"className='col' key={items.register}>

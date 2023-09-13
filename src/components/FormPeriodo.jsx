@@ -38,7 +38,7 @@ const FormPeriodo = ({register}) => {
               <AccordionDetails>
                 <Form.Group className="mb-3 "> 
                   <Typography>Desde: </Typography>
-                    <Row className="align-items-center mt-1">
+                    <Row className="align-items-center mt-1" style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
                       {
                         dataItems.form.periodoDesde.map((items)=>(
                           <Col xs="auto"className='col' key={items.register}>
