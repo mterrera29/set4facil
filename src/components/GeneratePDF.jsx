@@ -264,7 +264,7 @@ const GeneratePDF = ({escuelas, data}) => {
   
   return (
     <>
-      <Card style={{padding:"20px"}}>
+      <Card style={{padding:"20px", display:"flex", flexDirection:"column", justifyContent:"center"}}>
         <h1 className='titles' >Generar PDF</h1>
         <CombinedPDF combinePDFs={combinePDFs} reset={reset} combinedPdfUrl={combinedPdfUrl} />
         {escuelas.map((escuela, index)=>(

@@ -38,7 +38,7 @@ const FormCompleted = ({data, escuelas}) => {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header">
-                  <Typography>Período</Typography>
+                  <Typography><strong>Período</strong></Typography>
           </AccordionSummary>
             <AccordionDetails>
               <Form.Group className="mb-3 "> 
@@ -66,7 +66,7 @@ const FormCompleted = ({data, escuelas}) => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header">
-          <Typography>Datos</Typography>
+          <Typography><strong>Datos</strong></Typography>
         </AccordionSummary>
           <AccordionDetails className="mb-3">
             <Form.Label>Nombre y Apellido</Form.Label>
@@ -92,7 +92,7 @@ const FormCompleted = ({data, escuelas}) => {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header">
-                  <Typography>Otros Datos</Typography>
+                  <Typography><strong>Otros Datos</strong></Typography>
             </AccordionSummary>
               <AccordionDetails>
                 <Form.Group className="mb-3">
@@ -178,7 +178,7 @@ const FormCompleted = ({data, escuelas}) => {
             aria-controls="panel1a-content"
             id="panel1a-header" >
             <Typography>
-              Datos de la escuela #{index + 1}
+              <strong>Datos de la escuela #{index + 1}</strong>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>

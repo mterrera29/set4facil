@@ -46,7 +46,7 @@ const FormDatos = ({register}) => {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>Datos</Typography>
+            <Typography><strong>Datos</strong></Typography>
           </AccordionSummary>
           <AccordionDetails>
             {
@@ -66,7 +66,7 @@ const FormDatos = ({register}) => {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Otros Datos</Typography>
+                <Typography><strong>Otros Datos</strong></Typography>
               </AccordionSummary>
               <AccordionDetails>
                 {
