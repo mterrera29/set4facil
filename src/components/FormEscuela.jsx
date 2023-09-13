@@ -48,7 +48,7 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
         aria-controls="panel1a-content"
         id="panel1a-header">
           <Typography>
-            <strong>Datos de la escuela #{index + 1}</strong>
+            Datos de la escuela #{index + 1}
           </Typography>
       </AccordionSummary>
       <AccordionDetails >

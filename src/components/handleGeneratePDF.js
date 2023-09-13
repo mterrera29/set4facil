@@ -9,7 +9,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
   const page = pdfDoc.getPages()[0]; // Obtener la primera página existente
 
   page.drawText(data.desdeDia, {
-    x: 101,
+    x: 102,
     y: 598,
     size: 8,
     color: rgb(0, 0, 0),
@@ -17,7 +17,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
   });
 
   page.drawText(data.desdeMes, {
-    x: 101,
+    x: 102,
     y: 613.5,
     size: 8,
     color: rgb(0, 0, 0),
@@ -25,7 +25,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
   });
 
   page.drawText(data.desdeAño, {
-    x: 101,
+    x: 102,
     y: 627,
     size: 8,
     color: rgb(0, 0, 0),
@@ -33,7 +33,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
   });
 
   page.drawText(data.hastaDia, {
-    x: 101,
+    x: 102,
     y: 648.5,
     size: 8,
     color: rgb(0, 0, 0),
@@ -42,7 +42,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
 
   // Agregar el texto de la edad
   page.drawText(data.hastaMes, {
-    x: 101,
+    x: 102,
     y: 663.5,
     size: 8,
     color: rgb(0, 0, 0),
@@ -50,7 +50,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
   });
 
   page.drawText(data.hastaAño, {
-    x: 101,
+    x: 102,
     y: 678,
     size: 8,
     color: rgb(0, 0, 0),
@@ -67,7 +67,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
 
   page.drawText(escuela.cargoTitular, {
     x: 139,
-    y: 535,
+    y: 538,
     size: 9,
     color: rgb(0, 0, 0),
     rotate: degrees(90),
@@ -75,7 +75,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
 
   page.drawText(escuela.escuela, {
     x: 139,
-    y: 661,
+    y: 664,
     size: 9,
     color: rgb(0, 0, 0),
     rotate: degrees(90),
@@ -83,7 +83,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
 
   page.drawText(escuela.distrito, {
     x: 139,
-    y: 736,
+    y: 738,
     size: 9,
     color: rgb(0, 0, 0),
     rotate: degrees(90),

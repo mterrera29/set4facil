@@ -39,14 +39,14 @@ const FormDatos = ({register}) => {
   };
   return (
     <>
-      <Typography className='titles'><h1>2 - Datos Personales</h1></Typography>
+      <h1 className='titles'>Datos Personales</h1>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className="mb-3 custom-accordion">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography><strong>Datos</strong></Typography>
+            <Typography>Datos</Typography>
           </AccordionSummary>
           <AccordionDetails>
             {
@@ -66,7 +66,7 @@ const FormDatos = ({register}) => {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography><strong>Otros Datos</strong></Typography>
+                <Typography>Otros Datos</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 {

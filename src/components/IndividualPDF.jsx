@@ -34,7 +34,7 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
   return (
     <>
       <div>
-          <Button  className="mb-3" variant="outlined" 
+          <Button  className="mb-3"Button variant="contained" 
           onClick={()=>{
             handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])
             handleShowModal1() 
@@ -48,19 +48,19 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
             </Modal.Header>
             <Modal.Body>
               <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-                <Button className="mb-3" variant="secondary" onClick={()=>handleShowPDF(escuela, index)}>
+                <Button className="mb-3" Button variant="contained" onClick={()=>handleShowPDF(escuela, index)}>
                   Ver PDF
                 </Button>
-                <Button  className="mb-3" variant="secondary" onClick={()=>handleDownloadPDF(escuela, index)}>
+                <Button  className="mb-3" Button variant="contained" onClick={()=>handleDownloadPDF(escuela, index)}>
                   Descargar PDF
                 </Button>
-                <Button className="mb-3" variant="secondary" onClick={()=>handlePrintPDF()}>
+                <Button className="mb-3" Button variant="contained" onClick={()=>handlePrintPDF()}>
                   Imprimir PDF
                 </Button>
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseModal1}>
+              <Button Button variant="contained" onClick={handleCloseModal1}>
                 Cerrar
               </Button>
             </Modal.Footer>

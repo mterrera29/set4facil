@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Typography } from '@mui/material';
 import FormEscuela from './FormEscuela'
 import Button from '@mui/material/Button';
 
 const FormEscuelasTodas = ({agregarEscuela, register, escuelas, eliminarEscuela}) => {
   return (
     <>
-      <Typography className='titles'><h1>3 - Datos por Establecimiento</h1></Typography>
+      <h1 className='titles'>Datos por Establecimiento</h1>
       {escuelas.map((escuela, index) => (
         <FormEscuela key={index} index={index} register={register} escuela={escuela} eliminarEscuela={eliminarEscuela} />
       ))}

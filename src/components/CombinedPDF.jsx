@@ -31,7 +31,7 @@ const CombinedPDF = ({combinePDFs, combinedPdfUrl, reset}) => {
 
   return (
     <>
-    <Button className="mb-3" variant="outlined"  onClick={()=>{
+    <Button className="mb-3" variant="contained"  onClick={()=>{
       combinePDFs()
       handleShow2()
       }}>
@@ -43,19 +43,19 @@ const CombinedPDF = ({combinePDFs, combinedPdfUrl, reset}) => {
         </Modal.Header>
         <Modal.Body>
           <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-          <Button className="mb-3" variant="secondary" onClick={()=>handleShowPDF2()}>
+          <Button className="mb-3" Button variant="contained" onClick={()=>handleShowPDF2()}>
             Ver PDF
           </Button>
-          <Button className="mb-3" variant="secondary" onClick={()=>handleDownloadPDF2()}>
+          <Button className="mb-3" Button variant="contained" onClick={()=>handleDownloadPDF2()}>
             Descargar PDF
           </Button>
-          <Button className="mb-3" variant="secondary" onClick={()=>handlePrintPDF2()}>
+          <Button className="mb-3" Button variant="contained" onClick={()=>handlePrintPDF2()}>
             Imprimir PDF
           </Button>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose2}>
+          <Button variant="contained" onClick={handleClose2}>
             Cerrar
           </Button>
         </Modal.Footer>

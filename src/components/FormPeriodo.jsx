@@ -11,7 +11,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import NativeSelect from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import { useOptions } from '../Hooks/useOptions';
 import { useState } from 'react';
 import { dataItems } from '../../data';
@@ -26,14 +26,14 @@ const FormPeriodo = ({register}) => {
 
   return (
     <>
-      <Typography className='titles'><h1>1 - Período de Calificación</h1></Typography>
+      <h1 className='titles'>Período de Calificación</h1>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className="mb-3 mt-3 custom-accordion ">
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography><strong>Periodo</strong></Typography>
+                <Typography>Periodo</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Form.Group className="mb-3 "> 
@@ -43,17 +43,15 @@ const FormPeriodo = ({register}) => {
                         dataItems.form.periodoDesde.map((items)=>(
                           <Col xs="auto"className='col' key={items.register}>
                             <FormControl sx={{minWidth: 70}} size="small">
-                              <InputLabel htmlFor="1"className='colLabel'>{items.name}</InputLabel>
-                              <NativeSelect 
+                              <InputLabel id="dia" className='colLabel'>{items.name}</InputLabel>
+                              <Select 
                                 labelId={items.register}
-                                inputProps={{
-                                  id:"1",
-                                }}
+                                id="demo-simple-select"
                                 label={items.name}
                               {...register(`${items.register}`)}> 
                               <MenuItem value=""></MenuItem>
                                {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsAño: ""}
-                             </NativeSelect>
+                             </Select>
                             </FormControl>
                           </Col>
                         ))
@@ -67,17 +65,15 @@ const FormPeriodo = ({register}) => {
                       dataItems.form.periodoHasta.map((items)=>(
                         <Col xs="auto"className='col' key={items.register}>
                           <FormControl sx={{minWidth: 70}} size="small">
-                            <InputLabel htmlFor={`${items.register}`} className='colLabel'>{items.name}</InputLabel>
-                            <NativeSelect 
+                            <InputLabel id="dia" className='colLabel'>{items.name}</InputLabel>
+                            <Select 
                               labelId={items.register}
+                              id="demo-simple-select"
                               label={items.name}
-                              inputProps={{
-                                id:`${items.register}`,
-                              }}
                             {...register(`${items.register}`)}> 
                             <MenuItem value=""></MenuItem>
                              {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsAño: ""}
-                           </NativeSelect>
+                           </Select>
                           </FormControl>
                         </Col>
                       ))

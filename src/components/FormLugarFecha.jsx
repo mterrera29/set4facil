@@ -13,7 +13,6 @@ import Card from 'react-bootstrap/Card';
 import { useState } from 'react';
 import { useOptions } from '../Hooks/useOptions';
 import { dataItems } from '../../data';
-import { Typography } from '@mui/material';
 
 const FormLugarFecha = ({register}) => {
   const {optionsDia, optionsMes,  optionsMuchosAños} = useOptions()
@@ -41,7 +40,7 @@ const FormLugarFecha = ({register}) => {
 
   return (
     <>
-      <Typography><h1 className='titles'>4 - Lugar y Fecha Actual</h1></Typography>
+      <h1 className='titles'>Lugar y Fecha Actual</h1>
 
       <Card style={{padding:"20px"}}>
         <Form.Group className="mb-3 ">
@@ -50,7 +49,7 @@ const FormLugarFecha = ({register}) => {
         </Form.Group>
         <Form.Group className="mb-3 ">
           <Form.Label>Fecha(actual): </Form.Label>
-          <Row className="align-items-center">
+          <Row className="align-items-center" style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
             {
               dataItems.form.lugarFecha.map((items)=>(
                 <Col xs="auto"className='col' key={items.register}>
