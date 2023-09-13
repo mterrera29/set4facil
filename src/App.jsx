@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormCompleted from './components/FormCompleted';
 import Card from 'react-bootstrap/Card';
+import DrawerAppBar from './components/NavBar';
 
 function App() {
   const [id,setId] = useState(1)
@@ -62,9 +63,10 @@ function App() {
   
   return (
     <div className='main'>
-      <Card style={{padding:"20px"}}>
+      <DrawerAppBar/>
+      <Card style={{padding:"20px", marginTop:"60px"}}>
         {
-          page ===0 &&<Button variant="contained" onClick={()=>nextPage()}> Comenzar</Button>
+          page ===0 &&<Button variant="contained" onClick={()=>nextPage()}>Completar SET4</Button>
         }
         <form onChange={handleSubmit(onSubmit)} className='form' style={{position:"relative"}} onSubmit={(e) => {
             e.preventDefault(); // Previene la recarga de la página
@@ -86,7 +88,6 @@ function App() {
             > Generar SET4</Button>
           </>
           }
-          
           {page ===6 &&<GeneratePDF escuelas={escuelas} data={data} />}
           {(page >0 && page<5 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
           <ButtonGroup variant="contained" aria-label="outlined secondary button group" className='mt-3'>

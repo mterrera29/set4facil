@@ -4,6 +4,7 @@ import { PDFDocument} from 'pdf-lib';
 import IndividualPDF from './IndividualPDF';
 import CombinedPDF from './CombinedPDF';
 import { handleGeneratePDF } from './handleGeneratePDF';
+import { Card } from '@mui/material';
 
 const GeneratePDF = ({escuelas, data}) => {
   const [pdfUrl, setPdfUrl] = useState();
@@ -263,10 +264,13 @@ const GeneratePDF = ({escuelas, data}) => {
   
   return (
     <>
-      <CombinedPDF combinePDFs={combinePDFs} reset={reset} combinedPdfUrl={combinedPdfUrl} />
-      {escuelas.map((escuela, index)=>(
-        <IndividualPDF key={index} index={index} handleGeneratePDF={generatePDF} data={data} escuela={escuela}  reset={reset} pdfUrl={pdfUrl}/>
-      ))}
+      <Card style={{padding:"20px"}}>
+        <h1 className='titles' >Generar PDF</h1>
+        <CombinedPDF combinePDFs={combinePDFs} reset={reset} combinedPdfUrl={combinedPdfUrl} />
+        {escuelas.map((escuela, index)=>(
+          <IndividualPDF key={index} index={index} handleGeneratePDF={generatePDF} data={data} escuela={escuela}  reset={reset} pdfUrl={pdfUrl}/>
+        ))}
+      </Card>
     </>
   )
 }
