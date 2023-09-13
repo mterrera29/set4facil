@@ -12,6 +12,8 @@ import Card from 'react-bootstrap/Card';
 
 import { useState } from 'react';
 import { useOptions } from '../Hooks/useOptions';
+import { dataItems } from '../../data';
+import { Typography } from '@mui/material';
 
 const FormLugarFecha = ({register}) => {
   const {optionsDia, optionsMes,  optionsMuchosAños} = useOptions()
@@ -39,7 +41,7 @@ const FormLugarFecha = ({register}) => {
 
   return (
     <>
-      <h1 className='titles'>4 - Lugar y Fecha Actual</h1>
+      <Typography><h1 className='titles'>4 - Lugar y Fecha Actual</h1></Typography>
 
       <Card style={{padding:"20px"}}>
         <Form.Group className="mb-3 ">
@@ -49,48 +51,24 @@ const FormLugarFecha = ({register}) => {
         <Form.Group className="mb-3 ">
           <Form.Label>Fecha(actual): </Form.Label>
           <Row className="align-items-center">
-          <Col xs="auto"className='col'>
-              <FormControl sx={{minWidth: 70}} size="small">
-                <InputLabel id="dia" className='colLabel'>Día</InputLabel>
-                <Select 
-                  labelId="dia"
-                  id="demo-simple-select"
-                  label="Dia"
-                  defaultValue={currentDay}
-                  {...register(`lugarFechaDia`)}> 
-                <MenuItem value=""></MenuItem>
-                 {optionsDia}
-               </Select>
-              </FormControl>
-          </Col>
-          <Col xs="auto" className='col'>
-            <FormControl sx={{minWidth: 70 }} size="small">
-              <InputLabel id="mes" className='colLabel'>Mes</InputLabel>
-              <Select 
-                labelId="mes"
-                id="demo-simple-select2"
-                label="Mes"
-                defaultValue={currentMonth}
-                {...register(`lugarFechaMes`)}>
-                <MenuItem value=""></MenuItem>
-               {optionsMes}
-             </Select>
-            </FormControl>
-          </Col>
-          <Col xs="auto" className='col'>
-            <FormControl sx={{minWidth: 70 }} size="small">
-              <InputLabel id="año" className='colLabel'>Año</InputLabel>
-              <Select 
-                labelId="año"
-                id="demo-simple-select3"
-                label="Año"
-                defaultValue={currentYear}
-                {...register(`lugarFechaAño`)}>
-                <MenuItem value=""></MenuItem>
-               {optionsMuchosAños}
-             </Select>
-            </FormControl>
-          </Col>
+            {
+              dataItems.form.lugarFecha.map((items)=>(
+                <Col xs="auto"className='col' key={items.register}>
+                  <FormControl sx={{minWidth: 70}} size="small">
+                    <InputLabel id="dia" className='colLabel'>{items.name}</InputLabel>
+                    <Select 
+                      labelId={items.register}
+                      id="demo-simple-select"
+                      label={items.name}
+                      defaultValue={(items.name === "Día")? currentDay : (items.name=== "Mes") ? currentMonth: (items.name=== "Año")?currentYear: ""}
+                    {...register(`${items.register}`)}> 
+                    <MenuItem value=""></MenuItem>
+                     {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsMuchosAños: ""}
+                   </Select>
+                  </FormControl>
+                </Col>
+              ))
+            }
           </Row>
         </Form.Group>
       </Card>

@@ -32,13 +32,13 @@ const FormCompleted = ({data, escuelas}) => {
 
   return (
     <>
-      <h1 className='titles'>5 - Generar SET 4</h1>
+      <Typography className='titles'><h1>5 - Generar SET 4</h1></Typography>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className="mb-3 mt-3 custom-accordion ">
           <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header">
-                  <Typography>Período</Typography>
+                  <Typography><strong>Período</strong></Typography>
           </AccordionSummary>
             <AccordionDetails>
               <Form.Group className="mb-3 "> 
@@ -66,7 +66,7 @@ const FormCompleted = ({data, escuelas}) => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header">
-          <Typography>Datos</Typography>
+          <Typography><strong>Datos</strong></Typography>
         </AccordionSummary>
           <AccordionDetails className="mb-3">
             <Form.Label>Nombre y Apellido</Form.Label>
@@ -92,7 +92,7 @@ const FormCompleted = ({data, escuelas}) => {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header">
-                  <Typography>Otros Datos</Typography>
+                  <Typography><strong>Otros Datos</strong></Typography>
             </AccordionSummary>
               <AccordionDetails>
                 <Form.Group className="mb-3">
@@ -178,7 +178,7 @@ const FormCompleted = ({data, escuelas}) => {
             aria-controls="panel1a-content"
             id="panel1a-header" >
             <Typography>
-              Datos de la escuela #{index + 1}
+              <strong>Datos de la escuela #{index + 1}</strong>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -249,7 +249,7 @@ const FormCompleted = ({data, escuelas}) => {
       ))}
       <Card style={{padding:"20px", width:"100%"}} className='mb-3'>
         <Form.Group className="mb-3 ">
-          <Typography>Lugar</Typography>
+          <Typography className='negrita'>Lugar</Typography>
           <Form.Control 
             type="text"
             size="sm"
