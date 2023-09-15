@@ -10,9 +10,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { useState } from 'react';
 import { dataItems } from '../../data';
-import DateSelect from './DateSelect';
+import DatePeriodoSelect from './DatePeriodoSelect';
 
-const FormPeriodo = ({register}) => {
+const FormPeriodoEscuela = ({register, escuela, dataLocal}) => {
   const [expanded, setExpanded] = useState('panel1');
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -21,7 +21,6 @@ const FormPeriodo = ({register}) => {
 
   return (
     <>
-      <h1 className='titles'>Período de Calificación</h1>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className="mb-3 mt-3 custom-accordion ">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -36,7 +35,7 @@ const FormPeriodo = ({register}) => {
               <Row className="align-items-center mt-1" style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
                 {
                   dataItems.form.periodoDesde.map((items)=>(
-                    <DateSelect items={items} register={register} key={items.register} />
+                    <DatePeriodoSelect items={items} register={register} key={items.register} route={`escuelas[escuela${escuela.id}].${items.register}`} defaultV={dataLocal.escuelas?.[`escuela${escuela.id}`]?.[items.register] ?? ''} />
                   ))
                 }
               </Row>
@@ -46,7 +45,7 @@ const FormPeriodo = ({register}) => {
             <Row className="align-items-center mt-1">
               {
                 dataItems.form.periodoHasta.map((items)=>(
-                  <DateSelect items={items} register={register} key={items.register} />
+                  <DatePeriodoSelect items={items} register={register} key={items.register} route={`escuelas[escuela${escuela.id}].${items.register}`} defaultV={dataLocal.escuelas?.[`escuela${escuela.id}`]?.[items.register] ?? ''} />
                 ))
               }
             </Row>
@@ -57,4 +56,4 @@ const FormPeriodo = ({register}) => {
   )
 }
 
-export default FormPeriodo
+export default FormPeriodoEscuela

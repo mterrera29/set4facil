@@ -9,14 +9,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Card from 'react-bootstrap/Card';
 
 const FormCompleted = ({data, escuelas}) => {
-  const [expanded, setExpanded] = useState('panel1');
   const [expanded2, setExpanded2] = useState('panel1');
   const [expanded3, setExpanded3] = useState('panel1');
   const [expanded4, setExpanded4] = useState('panel1');
 
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
 
   const handleChange2 = (panel) => (event, newExpanded) => {
     setExpanded2(newExpanded ? panel : false);
@@ -32,35 +28,7 @@ const FormCompleted = ({data, escuelas}) => {
 
   return (
     <>
-      <h1 className='titles'>Comprobar Datos</h1>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className="mb-3 mt-3 custom-accordion ">
-          <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header">
-                  <Typography><strong>Período</strong></Typography>
-          </AccordionSummary>
-            <AccordionDetails>
-              <Form.Group className="mb-3 "> 
-              <Form.Control 
-                type="text"
-                size="sm"
-                placeholder={`${data.desdeDia} / ${data.desdeMes} / ${data.desdeAño}`}
-                aria-label="Disabled input example"
-                disabled
-                readOnly/>
-              </Form.Group>
-              <Form.Group className="mb-3 ">
-              <Form.Control 
-                type="text"
-                size="sm"
-                placeholder={`${data.hastaDia} / ${data.hastaMes} / ${data.hastaAño}`}
-                aria-label="Disabled input example"
-                disabled
-                readOnly/>
-              </Form.Group>
-            </AccordionDetails>
-      </Accordion>
+      <h1 className='titles'>Corroborar datos</h1>
       <Accordion expanded={expanded2 === 'panel1'} onChange={handleChange2('panel1')} className="mb-3 custom-accordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -182,74 +150,93 @@ const FormCompleted = ({data, escuelas}) => {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-             <Form.Group className="mb-3">
-               <Typography>Cargo del que es titular</Typography>
-               <Form.Control 
-                 type="text"
-                 size="sm"
-                 placeholder={data.escuelas[`escuela${escuela.id}`].cargoTitular}
-                 aria-label="Disabled input example"
-                 disabled
-                 readOnly/>
-             </Form.Group>
-             <Form.Group className="mb-3">
-               <Typography>Escuela N°</Typography>
-               <Form.Control 
-                 type="text"
-                 size="sm"
-                 placeholder={data.escuelas[`escuela${escuela.id}`].escuela}
-                 aria-label="Disabled input example"
-                 disabled
-                 readOnly/>
-             </Form.Group>
-             <Form.Group className="mb-3">
-               <Typography>Distrito</Typography>
-               <Form.Control 
-                 type="text"
-                 size="sm"
-                 placeholder={data.escuelas[`escuela${escuela.id}`].distrito}
-                 aria-label="Disabled input example"
-                 disabled
-                 readOnly/>
-             </Form.Group>
-             <Form.Group className="mb-3">
-               <Typography>Cargo que desempeña actualmente</Typography>
-               <Form.Control 
-                 type="text"
-                 size="sm"
-                 placeholder={data.escuelas[`escuela${escuela.id}`].cargoActual}
-                 aria-label="Disabled input example"
-                 disabled
-                 readOnly/>
-             </Form.Group>
-             <Form.Group className="mb-3">
-               <Typography>Organismo, repartición o dependencia</Typography>
-               <Form.Control 
-                 type="text"
-                 size="sm"
-                 placeholder={data.escuelas[`escuela${escuela.id}`].organismo}
-                 aria-label="Disabled input example"
-                 disabled
-                 readOnly/>
-             </Form.Group>
-             <Form.Group className="mb-3">
-               <Typography>¿Desde qué fecha?:</Typography>
-                 <Form.Group>
-                 <Form.Control 
-                   type="text"
-                   size="sm"
-                   placeholder={data.escuelas[`escuela${escuela.id}`].fechaDia + " / " + data.escuelas[`escuela${escuela.id}`].fechaMes + " / " + data.escuelas[`escuela${escuela.id}`].fechaAño }
-                   aria-label="Disabled input example"
-                   disabled
-                   readOnly/>
-                 </Form.Group>
+            <Typography>Período de Calificación</Typography>
+            <Form.Group className="mb-3 "> 
+            <Form.Control 
+              type="text"
+              size="sm"
+              placeholder={`${data.escuelas[`escuela${escuela.id}`].desdeDia} / ${data.escuelas[`escuela${escuela.id}`].desdeMes} / ${data.escuelas[`escuela${escuela.id}`].desdeAño}`}
+              aria-label="Disabled input example"
+              disabled
+              readOnly/>
+            </Form.Group>
+            <Form.Group className="mb-3 ">
+            <Form.Control 
+              type="text"
+              size="sm"
+              placeholder={`${data.escuelas[`escuela${escuela.id}`].hastaDia} / ${data.escuelas[`escuela${escuela.id}`].hastaMes} / ${data.escuelas[`escuela${escuela.id}`].hastaAño}`}
+              aria-label="Disabled input example"
+              disabled
+              readOnly/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Typography>Cargo del que es titular</Typography>
+              <Form.Control 
+                type="text"
+                size="sm"
+                placeholder={data.escuelas[`escuela${escuela.id}`].cargoTitular}
+                aria-label="Disabled input example"
+                disabled
+                readOnly/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Typography>Escuela N°</Typography>
+              <Form.Control 
+                type="text"
+                size="sm"
+                placeholder={data.escuelas[`escuela${escuela.id}`].escuela}
+                aria-label="Disabled input example"
+                disabled
+                readOnly/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Typography>Distrito</Typography>
+              <Form.Control 
+                type="text"
+                size="sm"
+                placeholder={data.escuelas[`escuela${escuela.id}`].distrito}
+                aria-label="Disabled input example"
+                disabled
+                readOnly/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Typography>Cargo que desempeña actualmente</Typography>
+              <Form.Control 
+                type="text"
+                size="sm"
+                placeholder={data.escuelas[`escuela${escuela.id}`].cargoActual}
+                aria-label="Disabled input example"
+                disabled
+                readOnly/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Typography>Organismo, repartición o dependencia</Typography>
+              <Form.Control 
+                type="text"
+                size="sm"
+                placeholder={data.escuelas[`escuela${escuela.id}`].organismo}
+                aria-label="Disabled input example"
+                disabled
+                readOnly/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Typography>¿Desde qué fecha?:</Typography>
+                <Form.Group>
+                <Form.Control 
+                  type="text"
+                  size="sm"
+                  placeholder={data.escuelas[`escuela${escuela.id}`].fechaDia + " / " + data.escuelas[`escuela${escuela.id}`].fechaMes + " / " + data.escuelas[`escuela${escuela.id}`].fechaAño }
+                  aria-label="Disabled input example"
+                  disabled
+                  readOnly/>
+                </Form.Group>
              </Form.Group>
           </AccordionDetails>
         </Accordion >
       ))}
       <Card style={{padding:"20px", width:"100%"}} className='mb-3'>
         <Form.Group className="mb-3 ">
-          <Typography>Lugar</Typography>
+          <Typography><strong>Lugar y fecha actual</strong></Typography>
           <Form.Control 
             type="text"
             size="sm"
@@ -259,7 +246,6 @@ const FormCompleted = ({data, escuelas}) => {
             readOnly/>
         </Form.Group>
         <Form.Group className="mb-3 ">
-          <Typography>Fecha(actual): </Typography>
           <Form.Group >
           <Form.Control 
                 type="text"

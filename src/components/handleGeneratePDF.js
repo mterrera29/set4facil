@@ -8,7 +8,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
 
   const page = pdfDoc.getPages()[0]; // Obtener la primera página existente
 
-  page.drawText(data.desdeDia, {
+  page.drawText(escuela.desdeDia, {
     x: 102,
     y: 598,
     size: 8,
@@ -16,7 +16,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
     rotate: degrees(90),
   });
 
-  page.drawText(data.desdeMes, {
+  page.drawText(escuela.desdeMes, {
     x: 102,
     y: 613.5,
     size: 8,
@@ -24,7 +24,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
     rotate: degrees(90),
   });
 
-  page.drawText(data.desdeAño, {
+  page.drawText(escuela.desdeAño, {
     x: 102,
     y: 627,
     size: 8,
@@ -32,7 +32,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
     rotate: degrees(90),
   });
 
-  page.drawText(data.hastaDia, {
+  page.drawText(escuela.hastaDia, {
     x: 102,
     y: 648.5,
     size: 8,
@@ -41,7 +41,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
   });
 
   // Agregar el texto de la edad
-  page.drawText(data.hastaMes, {
+  page.drawText(escuela.hastaMes, {
     x: 102,
     y: 663.5,
     size: 8,
@@ -49,7 +49,7 @@ export const handleGeneratePDF = async (escuela, data, lugarFecha, setPdfUrl, se
     rotate: degrees(90),
   });
 
-  page.drawText(data.hastaAño, {
+  page.drawText(escuela.hastaAño, {
     x: 102,
     y: 678,
     size: 8,

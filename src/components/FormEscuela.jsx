@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Accordion from '@mui/material/Accordion';
@@ -9,19 +8,15 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TextField from '@mui/material/TextField';
+import FormPeriodoEscuela from './FormPeriodoEscuela';
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 
 import Button from '@mui/material/Button';
-import { useOptions } from '../Hooks/useOptions';
 
 import { dataItems } from '../../data';
+import DateSchoolSelect from './DateSchoolSelect';
 
 const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
-  const {optionsDia, optionsMes, optionsMuchosAños} = useOptions()
   // eslint-disable-next-line no-unused-vars
   const [texto, setTexto] = useState('');
   const [expanded, setExpanded] = useState('panel1');
@@ -52,6 +47,7 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
           </Typography>
       </AccordionSummary>
       <AccordionDetails >
+        <FormPeriodoEscuela register={register} escuela={escuela} dataLocal={dataLocal} />
         {
           dataItems.form.escuelaDatos.map((item)=>(
             <Form.Group className="mb-3" key={item.register}>
@@ -67,20 +63,7 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
             <Row className="align-items-center mt-1" style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
             {
               dataItems.form.escuelaFecha.map((items)=>(
-                <Col xs="auto"className='col' key={items.register}>
-                  <FormControl sx={{minWidth: 70}} size="small">
-                    <InputLabel id="dia" className='colLabel'>{items.name}</InputLabel>
-                    <Select 
-                      labelId={items.register}
-                      id="demo-simple-select"
-                      label={items.name}
-                      defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.[items.register] ?? ''}
-                    {...register(`escuelas[escuela${escuela.id}].${items.register}`)}> 
-                    <MenuItem value=""></MenuItem>
-                     {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsMuchosAños: ""}
-                   </Select>
-                  </FormControl>
-                </Col>
+                <DateSchoolSelect items={items} register={register} key={items.register} escuela={escuela} dataLocal={dataLocal} />
               ))
             }
             </Row>

@@ -1,33 +1,18 @@
 /* eslint-disable react/prop-types */
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Card from 'react-bootstrap/Card';
 
 import { useState } from 'react';
-import { useOptions } from '../Hooks/useOptions';
 import { dataItems } from '../../data';
+import DateCurrentSelect from './DateCurrentSelect';
 
 const FormLugarFecha = ({register}) => {
-  const {optionsDia, optionsMes,  optionsMuchosAños} = useOptions()
   // eslint-disable-next-line no-unused-vars
   const [texto, setTexto] = useState('');
 
   const dataLocal = JSON.parse(localStorage.getItem(`data`))
-
-  function formatNumber(number) {
-    return number < 10 ? `0${number}` : `${number}`;
-  }
-  const currentDate = new Date();
-  const currentDay = formatNumber(currentDate.getDate());
-  const currentMonth = formatNumber(currentDate.getMonth() + 1); // Los meses son de 0 a 11 en JavaScript
-  const currentYear = currentDate.getFullYear();
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -52,20 +37,7 @@ const FormLugarFecha = ({register}) => {
           <Row className="align-items-center" style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
             {
               dataItems.form.lugarFecha.map((items)=>(
-                <Col xs="auto"className='col' key={items.register}>
-                  <FormControl sx={{minWidth: 70}} size="small">
-                    <InputLabel id="dia" className='colLabel'>{items.name}</InputLabel>
-                    <Select 
-                      labelId={items.register}
-                      id="demo-simple-select"
-                      label={items.name}
-                      defaultValue={(items.name === "Día")? currentDay : (items.name=== "Mes") ? currentMonth: (items.name=== "Año")?currentYear: ""}
-                    {...register(`${items.register}`)}> 
-                    <MenuItem value=""></MenuItem>
-                     {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsMuchosAños: ""}
-                   </Select>
-                  </FormControl>
-                </Col>
+                <DateCurrentSelect items={items} register={register} key={items.register} />
               ))
             }
           </Row>

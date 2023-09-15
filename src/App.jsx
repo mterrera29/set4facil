@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form"
 import "./App.css"
-import FormPeriodo from './components/FormPeriodo';
 import FormDatos from './components/FormDatos';
 import FormEscuelasTodas from './components/FormEscuelasTodas';
 import FormLugarFecha from './components/FormLugarFecha';
@@ -23,7 +22,7 @@ function App() {
 
   const nextPage = ()=>{
     handleSubmit(onSubmit)
-    if(page<6) return setPage(prevPage=> prevPage +1)
+    if(page<5) return setPage(prevPage=> prevPage +1)
     console.log("eaaa")
   }
 
@@ -60,7 +59,7 @@ function App() {
   const onSubmit = (data)=>{
     setData(data);
   }
-  
+  console.log(data)
   return (
     <div className='main'>
       <DrawerAppBar/>
@@ -73,11 +72,10 @@ function App() {
             handleSubmit(onSubmit)();
             nextPage();
           }}>
-          {page ===1 &&<FormPeriodo register={register} />}
-          {page ===2 &&<FormDatos register={register} errors={errors} />}
-          {page ===3 &&<FormEscuelasTodas agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} />}
-          {page ===4 &&<FormLugarFecha register={register}/>}
-          {page ===5 &&
+          {page ===1 &&<FormDatos register={register} errors={errors} />}
+          {page ===2 &&<FormEscuelasTodas agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} />}
+          {page ===3 &&<FormLugarFecha register={register}/>}
+          {page ===4 &&
           <>
             <FormCompleted data={data} escuelas={escuelas} />
             <Button variant="contained" onClick={()=>{
@@ -88,14 +86,14 @@ function App() {
             > Generar SET4</Button>
           </>
           }
-          {page ===6 &&<GeneratePDF escuelas={escuelas} data={data} />}
-          {(page >0 && page<5 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+          {page ===5 &&<GeneratePDF escuelas={escuelas} data={data} />}
+          {(page >0 && page<4 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
           <ButtonGroup variant="contained" aria-label="outlined secondary button group" className='mt-3'>
           <Button  onClick={()=>previuosPage()}>{"< Anterior"}</Button>
           <Button  type="submit" disabled={page > 4} className={page > 4 ? "disabled" : ""}>{"Siguiente >"}</Button>
           </ButtonGroup>
           </div>}
-          {(page >4 && page<7 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+          {(page >3 && page<6 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
           <Button className='mt-3' color="primary" variant="outlined" onClick={()=>previuosPage()}>{"< Volver"}</Button>
           </div>}
         </form>
