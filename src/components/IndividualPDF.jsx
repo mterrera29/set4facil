@@ -57,18 +57,20 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
             </Modal.Header>
             <Modal.Body>
               <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-                <Button className="mb-3" Button variant="contained" onClick={()=>handleShowPDF(escuela, index)}>
+                <Button className="mb-3" variant="contained" onClick={()=>handleShowPDF(escuela, index)}>
                   Ver PDF
                 <img className="escuelaIcon2" src={verPNG} alt="" />
                 </Button>
-                <Button  className="mb-3" Button variant="contained" onClick={()=>handleDownloadPDF(escuela, index)}>
+                <Button  className="mb-3" variant="contained" onClick={()=>handleDownloadPDF(escuela, index)}>
                   Descargar PDF
                   <img className="escuelaIcon2" src={descargar2PNG} alt="" />
                 </Button>
-                <Button className="mb-3" Button variant="contained" onClick={()=>handlePrintPDF()}>
-                  Imprimir PDF
-                  <img className="escuelaIcon2" src={imprimirPNG} alt="" />
-                </Button>
+                <div className='ocultar-en-mobile'>
+                  <Button className="mb-3 "variant="contained" onClick={()=>handlePrintPDF()}>
+                    Imprimir PDF
+                    <img className="escuelaIcon2" src={imprimirPNG} alt="" />
+                  </Button>
+                </div>
               </div>
             </Modal.Body>
             <Modal.Footer>

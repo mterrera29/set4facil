@@ -59,10 +59,12 @@ const CombinedPDF = ({combinePDFs, combinedPdfUrl, reset}) => {
               Descargar PDF
               <img className="escuelaIcon2" src={descargarPNG} alt="" />
             </Button>
-            <Button className="mb-3" Button variant="contained" onClick={()=>handlePrintPDF2()}>
-              Imprimir PDF
-              <img className="escuelaIcon2" src={imprimirPNG} alt="" />
-            </Button>
+            <div className=' ocultar-en-mobile'>
+              <Button className="mb-3" Button variant="contained" onClick={()=>handlePrintPDF2()}>
+                Imprimir PDF
+                <img className="escuelaIcon2" src={imprimirPNG} alt="" />
+              </Button>
+            </div>
             </div>
           </Modal.Body>
           <Modal.Footer>
