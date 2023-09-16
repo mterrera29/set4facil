@@ -54,7 +54,7 @@ const FormDatos = ({register}) => {
                 <React.Fragment key={item.register}>
                   <Typography>{item.name}</Typography>
                   <Form.Group className="mb-3">
-                    <TextField fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal?[item.register]: ""} {...register(`${item.register}`)} />
+                    <TextField fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal ? dataLocal[item.register]: ""} {...register(`${item.register}`)} />
                   </Form.Group>
                 </React.Fragment>
 
@@ -74,7 +74,7 @@ const FormDatos = ({register}) => {
                     <React.Fragment key={item.register}>
                       <Typography>{item.name}</Typography>
                       <Form.Group className="mb-3">
-                        <TextField fullWidth variant="outlined" size="small" type="text" onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal?[item.register]: ""} {...register(`${item.register}`)} />
+                        <TextField fullWidth variant="outlined" size="small" type="text" onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal ? dataLocal[item.register]: ""} {...register(`${item.register}`)} />
                       </Form.Group>
                     </React.Fragment>
                   ))

@@ -45,7 +45,7 @@ const FormLugarFecha = ({register}) => {
         </Form.Group>
         <Form.Group className="mb-3 ">
           <Form.Label>Fecha(actual): </Form.Label>
-          <Row className="align-items-center" style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
+          <Row className="align-items-center" style={{display:"flex", flexDirection:"row", justifyContent:"center", flexWrap:"nowrap"}}>
             {
               dataItems.form.lugarFecha.map((items)=>(
                 <Col xs="auto"className='col' key={items.register}>

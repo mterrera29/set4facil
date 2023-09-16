@@ -54,7 +54,7 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
           dataItems.form.escuelaDatos.map((item)=>(
             <Form.Group className="mb-3" key={item.register}>
               <Typography>{item.name}</Typography>
-              <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal?.escuelas?.[`escuela${escuela.id}`]?.[item.register] ?? ''} {...register(`escuelas[escuela${escuela.id}].${item.register}`)}/>
+              <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.[item.register] ?? ''} {...register(`escuelas[escuela${escuela.id}].${item.register}`)}/>
             </Form.Group>
             )
           )
