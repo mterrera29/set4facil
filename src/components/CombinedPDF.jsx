@@ -2,6 +2,7 @@
 import {  Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 import combinedPNG from "../assets/combinarPDF2.png"
 import verPNG from "../assets/ver.png"
 import descargarPNG from "../assets/descargar.png"
@@ -45,7 +46,7 @@ const CombinedPDF = ({combinePDFs, combinedPdfUrl, reset}) => {
       </section>
         <Modal centered show={showModal2} onHide={handleClose2}>
           <Modal.Header closeButton>
-            <Modal.Title>Un solo archivo</Modal.Title>
+            <Modal.Title><Typography style={{fontSize:"30px"}}><strong>Un solo archivo</strong></Typography></Modal.Title>
             <img className="escuelaIcon2" src={combinedPNG} alt="" />
           </Modal.Header>
           <Modal.Body>

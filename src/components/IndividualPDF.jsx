@@ -2,6 +2,7 @@
 import { Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 import descargarPNG from "../assets/descargarPDF.png"
 import verPNG from "../assets/ver.png"
 import descargar2PNG from "../assets/descargar.png"
@@ -51,7 +52,7 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
           </section>
           <Modal centered show={showModal1} onHide={handleCloseModal1}>
             <Modal.Header closeButton>
-              <h1>SET 4 Escuela #{index +1}</h1>
+              <Modal.Title><Typography style={{fontSize:"30px"}}><strong>SET 4 Escuela #{index +1}</strong></Typography></Modal.Title>
               <img className="escuelaIcon2" src={descargarPNG} alt="" />
             </Modal.Header>
             <Modal.Body>
