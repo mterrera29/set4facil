@@ -74,9 +74,9 @@ function App() {
       <DrawerAppBar/>
       <section className='content'>
         <article className='cardContent'>
-          <Card style={{padding:"20px", marginTop:"60px"}}>
+          <div style={{padding:"20px", marginTop:"60px"}}>
             {
-              page ===0 &&<Button variant="contained" onClick={()=>nextPage()}>Completar SET4</Button>
+              page ===0 &&<Button color='success' variant="contained" onClick={()=>nextPage()}>Completar SET4</Button>
             }
             <form onChange={handleSubmit(onSubmit)}  className='form' style={{position:"relative"}} onSubmit={(e) => {
                 e.preventDefault(); // Previene la recarga de la página
@@ -89,7 +89,7 @@ function App() {
               {page ===4 &&
               <>
                 <FormCompleted data={data} escuelas={escuelas} />
-                <Button variant="contained" onClick={()=>{
+                <Button variant="contained" color='success' onClick={()=>{
                   handleSubmit(onSubmit)
                   nextPage()
                   saveLocal()
@@ -97,18 +97,18 @@ function App() {
                 > Generar SET4</Button>
               </>
               }
-              {page ===5 &&<GeneratePDF escuelas={escuelas} data={data} />}
+              {page ===5 &&<GeneratePDF color='success' escuelas={escuelas} data={data} />}
               {(page >0 && page<4 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
               <ButtonGroup variant="contained" aria-label="outlined secondary button group" className='mt-3'>
-              <Button  onClick={()=>previuosPage()}>{"< Anterior"}</Button>
-              <Button  type="submit" disabled={page > 4} className={page > 4 ? "disabled" : ""}>{"Siguiente >"}</Button>
+              <Button color='success'  onClick={()=>previuosPage()}>{"< Anterior"}</Button>
+              <Button  color='success' type="submit" disabled={page > 4} className={page > 4 ? "disabled" : ""}>{"Siguiente >"}</Button>
               </ButtonGroup>
               </div>}
               {(page >3 && page<6 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
-              <Button className='mt-3' color="primary" variant="outlined" onClick={()=>previuosPage()}>{"< Volver"}</Button>
+              <Button className='mt-3' color='success' variant="outlined" onClick={()=>previuosPage()}>{"< Volver"}</Button>
               </div>}
             </form>
-          </Card>
+          </div>
         </article>
       </section>
     </div>

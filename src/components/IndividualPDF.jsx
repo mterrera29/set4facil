@@ -40,7 +40,7 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
     <>
       <div>
           <section style={{display:"flex", alignItems:"center", paddingLeft:"10px", marginBottom:"15px"}}>
-            <Button  variant="contained" 
+            <Button color='success' variant="contained" 
             onClick={()=>{
               handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])
               handleShowModal1() 
@@ -57,16 +57,16 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
             </Modal.Header>
             <Modal.Body>
               <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-                <Button className="mb-3" variant="contained" onClick={()=>handleShowPDF(escuela, index)}>
+                <Button color='success' className="mb-3" variant="contained" onClick={()=>handleShowPDF(escuela, index)}>
                   Ver PDF
                 <img className="escuelaIcon2" src={verPNG} alt="" />
                 </Button>
-                <Button  className="mb-3" variant="contained" onClick={()=>handleDownloadPDF(escuela, index)}>
+                <Button color='success'  className="mb-3" variant="contained" onClick={()=>handleDownloadPDF(escuela, index)}>
                   Descargar PDF
                   <img className="escuelaIcon2" src={descargar2PNG} alt="" />
                 </Button>
                 <div className='ocultar-en-mobile'>
-                  <Button className="mb-3 "variant="contained" onClick={()=>handlePrintPDF()}>
+                  <Button color='success' className="mb-3 "variant="contained" onClick={()=>handlePrintPDF()}>
                     Imprimir PDF
                     <img className="escuelaIcon2" src={imprimirPNG} alt="" />
                   </Button>
@@ -74,7 +74,7 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button Button variant="contained" onClick={handleCloseModal1}>
+              <Button color='success' Button variant="contained" onClick={handleCloseModal1}>
                 Cerrar
               </Button>
             </Modal.Footer>

@@ -76,6 +76,7 @@
   }
   .cardContent{
     padding: 10px;
+    padding-bottom: 40px;
   }
   .ocultar-en-mobile {
     display: none;
