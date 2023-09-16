@@ -8,7 +8,7 @@ import GeneratePDF from './components/GeneratePDF';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormCompleted from './components/FormCompleted';
-import Card from 'react-bootstrap/Card';
+import { Card } from '@mui/material';
 import DrawerAppBar from './components/NavBar';
 
 function App() {
@@ -72,42 +72,45 @@ function App() {
   return (
     <div className='main'>
       <DrawerAppBar/>
-      <Card style={{padding:"20px", marginTop:"60px"}}>
-        {
-          page ===0 &&<Button variant="contained" onClick={()=>nextPage()}>Completar SET4</Button>
-        }
-        <form onChange={handleSubmit(onSubmit)}  className='form' style={{position:"relative"}} onSubmit={(e) => {
-            e.preventDefault(); // Previene la recarga de la página
-            handleSubmit(onSubmit)();
-            nextPage();
-          }}>
-          {page ===1 &&<FormDatos register={register} defaultData={defaultData} errors={errors} />}
-          {page ===2 &&<FormEscuelasTodas defaultData={defaultData} agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} handleSubmit={handleSubmit} />}
-          {page ===3 &&<FormLugarFecha defaultData={defaultData} register={register}/>}
-          {page ===4 &&
-          <>
-            <FormCompleted data={data} escuelas={escuelas} />
-            <Button variant="contained" onClick={()=>{
-              handleSubmit(onSubmit)
-              nextPage()
-              saveLocal()
-              }}
-            > Generar SET4</Button>
-          </>
-          }
-          {page ===5 &&<GeneratePDF escuelas={escuelas} data={data} />}
-          {(page >0 && page<4 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
-          <ButtonGroup variant="contained" aria-label="outlined secondary button group" className='mt-3'>
-          <Button  onClick={()=>previuosPage()}>{"< Anterior"}</Button>
-          <Button  type="submit" disabled={page > 4} className={page > 4 ? "disabled" : ""}>{"Siguiente >"}</Button>
-          </ButtonGroup>
-          </div>}
-          {(page >3 && page<6 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
-          <Button className='mt-3' color="primary" variant="outlined" onClick={()=>previuosPage()}>{"< Volver"}</Button>
-          </div>}
-        </form>
-      </Card>
-      <br />
+      <section className='content'>
+        <article className='cardContent'>
+          <Card style={{padding:"20px", marginTop:"60px"}}>
+            {
+              page ===0 &&<Button variant="contained" onClick={()=>nextPage()}>Completar SET4</Button>
+            }
+            <form onChange={handleSubmit(onSubmit)}  className='form' style={{position:"relative"}} onSubmit={(e) => {
+                e.preventDefault(); // Previene la recarga de la página
+                handleSubmit(onSubmit)();
+                nextPage();
+              }}>
+              {page ===1 &&<FormDatos register={register} defaultData={defaultData} errors={errors} />}
+              {page ===2 &&<FormEscuelasTodas defaultData={defaultData} agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} handleSubmit={handleSubmit} />}
+              {page ===3 &&<FormLugarFecha defaultData={defaultData} register={register}/>}
+              {page ===4 &&
+              <>
+                <FormCompleted data={data} escuelas={escuelas} />
+                <Button variant="contained" onClick={()=>{
+                  handleSubmit(onSubmit)
+                  nextPage()
+                  saveLocal()
+                  }}
+                > Generar SET4</Button>
+              </>
+              }
+              {page ===5 &&<GeneratePDF escuelas={escuelas} data={data} />}
+              {(page >0 && page<4 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+              <ButtonGroup variant="contained" aria-label="outlined secondary button group" className='mt-3'>
+              <Button  onClick={()=>previuosPage()}>{"< Anterior"}</Button>
+              <Button  type="submit" disabled={page > 4} className={page > 4 ? "disabled" : ""}>{"Siguiente >"}</Button>
+              </ButtonGroup>
+              </div>}
+              {(page >3 && page<6 ) &&<div style={{ width:"100%", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+              <Button className='mt-3' color="primary" variant="outlined" onClick={()=>previuosPage()}>{"< Volver"}</Button>
+              </div>}
+            </form>
+          </Card>
+        </article>
+      </section>
     </div>
   );
 }
