@@ -7,6 +7,11 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Card from 'react-bootstrap/Card';
+import lugarPNG from "../assets/lugar.png"
+import fechaPNG from "../assets/fecha.png"
+import datosPNG from "../assets/datos.png"
+import otrosDatosPNG from "../assets/datos2.png"
+import escuelaPNG from "../assets/escuela2.png"
 
 const FormCompleted = ({data, escuelas}) => {
   const [expanded2, setExpanded2] = useState('panel1');
@@ -34,7 +39,8 @@ const FormCompleted = ({data, escuelas}) => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header">
-          <Typography><strong>Datos</strong></Typography>
+            <img className="escuelaIcon" src={datosPNG} alt="" />
+            <Typography style={{display:"flex", alignItems:"center", paddingLeft:"10px"}}><strong>Datos</strong></Typography>
         </AccordionSummary>
           <AccordionDetails className="mb-3">
             <Form.Label>Nombre y Apellido</Form.Label>
@@ -60,7 +66,8 @@ const FormCompleted = ({data, escuelas}) => {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header">
-                  <Typography><strong>Otros Datos</strong></Typography>
+                  <img className="escuelaIcon" src={otrosDatosPNG} alt="" />
+                <Typography style={{display:"flex", alignItems:"center", paddingLeft:"10px"}}><strong>Otros Datos</strong></Typography>
             </AccordionSummary>
               <AccordionDetails>
                 <Form.Group className="mb-3">
@@ -145,9 +152,10 @@ const FormCompleted = ({data, escuelas}) => {
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header" >
-            <Typography>
-              <strong>Datos de la escuela #{index + 1}</strong>
-            </Typography>
+            <img className="escuelaIcon" src={escuelaPNG} alt="" />
+          <Typography style={{display:"flex", alignItems:"center", paddingLeft:"10px"}}>
+            <strong>Datos de la escuela #{index + 1}</strong>
+          </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>Período de Calificación</Typography>
@@ -236,24 +244,29 @@ const FormCompleted = ({data, escuelas}) => {
       ))}
       <Card style={{padding:"20px", width:"100%"}} className='mb-3'>
         <Form.Group className="mb-3 ">
-          <Typography><strong>Lugar y fecha actual</strong></Typography>
+          <img className="escuelaIcon" src={lugarPNG} alt="" />
+          <Form.Label style={{paddingLeft:"10px"}}><strong>Lugar</strong></Form.Label>
           <Form.Control 
             type="text"
             size="sm"
             placeholder={data.lugar}
             aria-label="Disabled input example"
             disabled
-            readOnly/>
+            readOnly
+            className="mb-2 mt-2"/>
         </Form.Group>
         <Form.Group className="mb-3 ">
           <Form.Group >
+          <img className="escuelaIcon" src={fechaPNG} alt="" />
+          <Form.Label style={{paddingLeft:"10px"}}><strong>Fecha (actual): </strong></Form.Label>
           <Form.Control 
-                type="text"
-                size="sm"
-                placeholder={`${data.lugarFechaDia} / ${data.lugarFechaMes} / ${data.lugarFechaAño}`}
-                aria-label="Disabled input example"
-                disabled
-                readOnly/>
+            type="text"
+            size="sm"
+            placeholder={`${data.lugarFechaDia} / ${data.lugarFechaMes} / ${data.lugarFechaAño}`}
+            aria-label="Disabled input example"
+            disabled
+            readOnly
+            className="mb-2 mt-2"/>
           </Form.Group>
         </Form.Group>
       </Card>

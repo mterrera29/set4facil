@@ -8,7 +8,7 @@ import { Card } from '@mui/material';
 import { dataItems } from '../../data';
 import { useOptions } from '../Hooks/useOptions';
 
-const FormPeriodoEscuela = ({register, escuela}) => {
+const FormPeriodoEscuela = ({register, escuela, defaultData}) => {
   const {optionsDia, optionsMes, optionsAño} = useOptions()
   return (
     <>
@@ -23,6 +23,7 @@ const FormPeriodoEscuela = ({register, escuela}) => {
                       <label className='colLabel'><Typography style={{ fontSize: '14px' }}>{items.name}</Typography></label>
                       <Form.Select 
                         {...register(`escuelas[escuela${escuela.id}].${items.register}`)}
+                        defaultValue={defaultData? defaultData.escuelas?.[`escuela${escuela.id}`]?.[items.register]: ''}
                         > 
                       <option value=""></option>
                       {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsAño: ""}
@@ -39,7 +40,9 @@ const FormPeriodoEscuela = ({register, escuela}) => {
                 dataItems.form.periodoHasta.map((items)=>(
                   <Col xs="auto"className='col' style={{display:"flex", flexDirection:"column", justifyContent:"center", padding:"5px"}} key={items.register}>
                     <label className='colLabel'><Typography style={{ fontSize: '14px' }}>{items.name}</Typography></label>
-                    <Form.Select {...register(`escuelas[escuela${escuela.id}].${items.register}`)}> 
+                    <Form.Select {...register(`escuelas[escuela${escuela.id}].${items.register}`)}
+                    defaultValue={defaultData? defaultData.escuelas?.[`escuela${escuela.id}`]?.[items.register]: ''}
+                    > 
                     <option value=""></option>
                     {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsAño: ""}
                     </Form.Select>

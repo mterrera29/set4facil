@@ -8,8 +8,10 @@ import { useState } from 'react';
 import { dataItems } from '../../data';
 import { Typography } from '@mui/material';
 import { useOptions } from '../Hooks/useOptions';
+import lugarPNG from "../assets/lugar.png"
+import fechaPNG from "../assets/fecha.png"
 
-const FormLugarFecha = ({register}) => {
+const FormLugarFecha = ({register, defaultData}) => {
   // eslint-disable-next-line no-unused-vars
   const [texto, setTexto] = useState('');
   const {optionsDia, optionsMes,  optionsMuchosAños} = useOptions()
@@ -21,9 +23,6 @@ const FormLugarFecha = ({register}) => {
   const currentDay = formatNumber(currentDate.getDate());
   const currentMonth = formatNumber(currentDate.getMonth() + 1); // Los meses son de 0 a 11 en JavaScript
   const currentYear = currentDate.getFullYear();
-
-
-  const dataLocal = JSON.parse(localStorage.getItem(`data`))
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -40,11 +39,13 @@ const FormLugarFecha = ({register}) => {
 
       <Card style={{padding:"20px"}}>
         <Form.Group className="mb-3 ">
-          <Form.Label>Lugar</Form.Label>
-          <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: 20}} defaultValue={dataLocal?.lugar} {...register("lugar")} />
+        <img className="escuelaIcon" src={lugarPNG} alt="" />
+          <Form.Label style={{paddingLeft:"10px"}}><strong>Lugar</strong></Form.Label>
+          <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: 20}} defaultValue={defaultData ? defaultData.lugar: ""} {...register("lugar")} />
         </Form.Group>
         <Form.Group className="mb-3 ">
-          <Form.Label>Fecha(actual): </Form.Label>
+        <img className="escuelaIcon" src={fechaPNG} alt="" />
+          <Form.Label style={{paddingLeft:"10px"}}><strong>Fecha (actual): </strong></Form.Label>
           <Row className="align-items-center" style={{display:"flex", flexDirection:"row", justifyContent:"center", flexWrap:"nowrap"}}>
             {
               dataItems.form.lugarFecha.map((items)=>(

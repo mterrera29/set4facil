@@ -17,8 +17,16 @@ function App() {
   const {register, formState:{errors}, handleSubmit} = useForm()
   const [escuelas, setEscuelas] = useState([{id:id}]);
   const [page, setPage] = useState(0)
-
+  const [defaultData, setDefaultData] = useState()
+  
   const dataLocal = JSON.parse(localStorage.getItem(`data`))
+
+  useEffect(() => {
+    dataLocal && setDefaultData(dataLocal)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  console.log(defaultData)
 
   const nextPage = ()=>{
     handleSubmit(onSubmit)
@@ -73,9 +81,9 @@ function App() {
             handleSubmit(onSubmit)();
             nextPage();
           }}>
-          {page ===1 &&<FormDatos register={register} errors={errors} />}
-          {page ===2 &&<FormEscuelasTodas agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} handleSubmit={handleSubmit} />}
-          {page ===3 &&<FormLugarFecha register={register}/>}
+          {page ===1 &&<FormDatos register={register} defaultData={defaultData} errors={errors} />}
+          {page ===2 &&<FormEscuelasTodas defaultData={defaultData} agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} handleSubmit={handleSubmit} />}
+          {page ===3 &&<FormLugarFecha defaultData={defaultData} register={register}/>}
           {page ===4 &&
           <>
             <FormCompleted data={data} escuelas={escuelas} />

@@ -9,16 +9,17 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TextField from '@mui/material/TextField';
+import datosPNG from "../assets/datos.png"
+import otrosDatosPNG from "../assets/datos2.png"
 
 import { dataItems } from '../../data';
 
-const FormDatos = ({register}) => {
+const FormDatos = ({register, defaultData}) => {
   // eslint-disable-next-line no-unused-vars
   const [texto, setTexto] = useState('');
   const [expanded, setExpanded] = useState('panel1');
   const [expanded2, setExpanded2] = useState('');
-  
-  const dataLocal = JSON.parse(localStorage.getItem(`data`))
+
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -46,7 +47,8 @@ const FormDatos = ({register}) => {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography><strong>Datos</strong></Typography>
+            <img className="escuelaIcon" src={datosPNG} alt="" />
+            <Typography style={{display:"flex", alignItems:"center", paddingLeft:"10px"}}><strong>Datos</strong></Typography>
           </AccordionSummary>
           <AccordionDetails>
             {
@@ -54,7 +56,7 @@ const FormDatos = ({register}) => {
                 <React.Fragment key={item.register}>
                   <Typography>{item.name}</Typography>
                   <Form.Group className="mb-3">
-                    <TextField fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal ? dataLocal[item.register]: ""} {...register(`${item.register}`)} />
+                    <TextField fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={defaultData ? defaultData[item.register]: ""} {...register(`${item.register}`)} />
                   </Form.Group>
                 </React.Fragment>
 
@@ -66,15 +68,16 @@ const FormDatos = ({register}) => {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography><strong>Otros Datos</strong></Typography>
+                <img className="escuelaIcon" src={otrosDatosPNG} alt="" />
+                <Typography style={{display:"flex", alignItems:"center", paddingLeft:"10px"}}><strong>Otros Datos</strong></Typography>
               </AccordionSummary>
               <AccordionDetails>
                 {
                   dataItems.form.otrosDatos.map((item)=>(
                     <React.Fragment key={item.register}>
-                      <Typography>{item.name}</Typography>
+                      <Typography >{item.name}</Typography>
                       <Form.Group className="mb-3">
-                        <TextField fullWidth variant="outlined" size="small" type="text" onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal ? dataLocal[item.register]: ""} {...register(`${item.register}`)} />
+                        <TextField fullWidth variant="outlined" size="small" type="text" onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={defaultData ? defaultData[item.register]: ""} {...register(`${item.register}`)} />
                       </Form.Group>
                     </React.Fragment>
                   ))

@@ -2,12 +2,12 @@
 import FormEscuela from './FormEscuela'
 import Button from '@mui/material/Button';
 
-const FormEscuelasTodas = ({agregarEscuela, register, escuelas, eliminarEscuela}) => {
+const FormEscuelasTodas = ({agregarEscuela, register, escuelas, eliminarEscuela, defaultData}) => {
   return (
     <>
       <h1 className='titles'>Datos por Establecimiento</h1>
       {escuelas.map((escuela, index) => (
-        <FormEscuela key={index} index={index} register={register} escuela={escuela} eliminarEscuela={eliminarEscuela} />
+        <FormEscuela key={index} index={index} register={register} escuela={escuela} eliminarEscuela={eliminarEscuela} defaultData={defaultData} />
       ))}
       <Button size="small" variant="contained" color="success" onClick={agregarEscuela} className="mb-3" >Agregar otra Escuela</Button>
     </>

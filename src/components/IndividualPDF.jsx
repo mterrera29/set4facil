@@ -2,6 +2,10 @@
 import { Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
+import descargarPNG from "../assets/descargarPDF.png"
+import verPNG from "../assets/ver.png"
+import descargar2PNG from "../assets/descargar.png"
+import imprimirPNG from "../assets/imprimir.png"
 
 const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }) => {
   const [showModal1, setShowModal1] = useState(false);
@@ -34,28 +38,35 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
   return (
     <>
       <div>
-          <Button  className="mb-3"Button variant="contained" 
-          onClick={()=>{
-            handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])
-            handleShowModal1() 
+          <section style={{display:"flex", alignItems:"center", paddingLeft:"10px", marginBottom:"15px"}}>
+            <Button  variant="contained" 
+            onClick={()=>{
+              handleGeneratePDF(data.escuelas[`escuela${escuela.id}`])
+              handleShowModal1() 
             }
           }>
-           Generar SET4 de Escuela #{index + 1}
-          </Button>
-          <Modal show={showModal1} onHide={handleCloseModal1}>
+             SET4 de Escuela #{index + 1}
+              <img className="escuelaIcon2" src={descargarPNG} alt="" />
+            </Button>
+          </section>
+          <Modal centered show={showModal1} onHide={handleCloseModal1}>
             <Modal.Header closeButton>
               <h1>SET 4 Escuela #{index +1}</h1>
+              <img className="escuelaIcon2" src={descargarPNG} alt="" />
             </Modal.Header>
             <Modal.Body>
               <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
                 <Button className="mb-3" Button variant="contained" onClick={()=>handleShowPDF(escuela, index)}>
                   Ver PDF
+                <img className="escuelaIcon2" src={verPNG} alt="" />
                 </Button>
                 <Button  className="mb-3" Button variant="contained" onClick={()=>handleDownloadPDF(escuela, index)}>
                   Descargar PDF
+                  <img className="escuelaIcon2" src={descargar2PNG} alt="" />
                 </Button>
                 <Button className="mb-3" Button variant="contained" onClick={()=>handlePrintPDF()}>
                   Imprimir PDF
+                  <img className="escuelaIcon2" src={imprimirPNG} alt="" />
                 </Button>
               </div>
             </Modal.Body>
