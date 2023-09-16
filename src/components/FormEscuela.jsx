@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { Col } from 'react-bootstrap';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -14,12 +15,13 @@ import FormPeriodoEscuela from './FormPeriodoEscuela';
 import Button from '@mui/material/Button';
 
 import { dataItems } from '../../data';
-import DateSchoolSelect from './DateSchoolSelect';
+import { useOptions } from '../Hooks/useOptions';
 
 const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
   // eslint-disable-next-line no-unused-vars
   const [texto, setTexto] = useState('');
   const [expanded, setExpanded] = useState('panel1');
+  const {optionsDia, optionsMes,  optionsMuchosAños} = useOptions()
 
   const dataLocal = JSON.parse(localStorage.getItem(`data`))
 
@@ -29,8 +31,8 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
-    const maxLength = 20; // Establece el máximo de caracteres permitidos
-
+    const maxLength = 20; 
+    
     if (inputValue.length <= maxLength) {
       setTexto(inputValue);
     }
@@ -52,7 +54,7 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
           dataItems.form.escuelaDatos.map((item)=>(
             <Form.Group className="mb-3" key={item.register}>
               <Typography>{item.name}</Typography>
-              <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal.escuelas?.[`escuela${escuela.id}`]?.[item.register] ?? ''} {...register(`escuelas[escuela${escuela.id}].${item.register}`)} />
+              <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: item.maxLength}} defaultValue={dataLocal?.escuelas?.[`escuela${escuela.id}`]?.[item.register] ?? ''} {...register(`escuelas[escuela${escuela.id}].${item.register}`)}/>
             </Form.Group>
             )
           )
@@ -63,7 +65,13 @@ const FormEscuela = ({index, register, escuela, eliminarEscuela}) => {
             <Row className="align-items-center mt-1" style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
             {
               dataItems.form.escuelaFecha.map((items)=>(
-                <DateSchoolSelect items={items} register={register} key={items.register} escuela={escuela} dataLocal={dataLocal} />
+                <Col xs="auto"className='col' key={items.register}>
+                  <label className='colLabel'><Typography style={{ fontSize: '14px' }}>{items.name}</Typography></label>
+                  <Form.Select {...register(`escuelas[escuela${escuela.id}].${items.register}`)}> 
+                  <option value=""></option>
+                  {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsMuchosAños: ""}
+                  </Form.Select>
+                </Col>
               ))
             }
             </Row>

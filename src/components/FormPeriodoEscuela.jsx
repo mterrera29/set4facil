@@ -2,12 +2,14 @@
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { Col } from 'react-bootstrap';
 import Typography from '@mui/material/Typography';
 import { Card } from '@mui/material';
 import { dataItems } from '../../data';
-import DatePeriodoSelect from './DatePeriodoSelect';
+import { useOptions } from '../Hooks/useOptions';
 
-const FormPeriodoEscuela = ({register, escuela, dataLocal}) => {
+const FormPeriodoEscuela = ({register, escuela}) => {
+  const {optionsDia, optionsMes, optionsAño} = useOptions()
   return (
     <>
       <Card style={{padding:"20px", marginBottom:"10px"}}>
@@ -17,7 +19,15 @@ const FormPeriodoEscuela = ({register, escuela, dataLocal}) => {
               <Row className="align-items-center mt-1" style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
                 {
                   dataItems.form.periodoDesde.map((items)=>(
-                    <DatePeriodoSelect items={items} register={register} key={items.register} route={`escuelas[escuela${escuela.id}].${items.register}`} defaultV={dataLocal.escuelas?.[`escuela${escuela.id}`]?.[items.register] ?? ''} />
+                    <Col xs="auto"className='col' key={items.register}>
+                      <label className='colLabel'><Typography style={{ fontSize: '14px' }}>{items.name}</Typography></label>
+                      <Form.Select 
+                        {...register(`escuelas[escuela${escuela.id}].${items.register}`)}
+                        > 
+                      <option value=""></option>
+                      {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsAño: ""}
+                      </Form.Select>
+                    </Col>
                   ))
                 }
               </Row>
@@ -27,7 +37,13 @@ const FormPeriodoEscuela = ({register, escuela, dataLocal}) => {
             <Row className="align-items-center mt-1">
               {
                 dataItems.form.periodoHasta.map((items)=>(
-                  <DatePeriodoSelect items={items} register={register} key={items.register} route={`escuelas[escuela${escuela.id}].${items.register}`} defaultV={dataLocal.escuelas?.[`escuela${escuela.id}`]?.[items.register] ?? ''} />
+                  <Col xs="auto"className='col' key={items.register}>
+                    <label className='colLabel'><Typography style={{ fontSize: '14px' }}>{items.name}</Typography></label>
+                    <Form.Select {...register(`escuelas[escuela${escuela.id}].${items.register}`)}> 
+                    <option value=""></option>
+                    {(items.name === "Día")? optionsDia : (items.name=== "Mes") ? optionsMes: (items.name=== "Año")?optionsAño: ""}
+                    </Form.Select>
+                  </Col>
                 ))
               }
             </Row>

@@ -58,6 +58,7 @@ function App() {
   
   const onSubmit = (data)=>{
     setData(data);
+    console.log("submit!")
   }
   console.log(data)
   return (
@@ -67,13 +68,13 @@ function App() {
         {
           page ===0 &&<Button variant="contained" onClick={()=>nextPage()}>Completar SET4</Button>
         }
-        <form onChange={handleSubmit(onSubmit)} className='form' style={{position:"relative"}} onSubmit={(e) => {
+        <form onChange={handleSubmit(onSubmit)}  className='form' style={{position:"relative"}} onSubmit={(e) => {
             e.preventDefault(); // Previene la recarga de la página
             handleSubmit(onSubmit)();
             nextPage();
           }}>
           {page ===1 &&<FormDatos register={register} errors={errors} />}
-          {page ===2 &&<FormEscuelasTodas agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} />}
+          {page ===2 &&<FormEscuelasTodas agregarEscuela={agregarEscuela} register={register} escuelas={escuelas} eliminarEscuela={eliminarEscuela} handleSubmit={handleSubmit} />}
           {page ===3 &&<FormLugarFecha register={register}/>}
           {page ===4 &&
           <>

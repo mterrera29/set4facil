@@ -1,4 +1,3 @@
-import MenuItem from '@mui/material/MenuItem';
 
 export function useOptions(){
   const optionsDia = [];
@@ -12,20 +11,20 @@ export function useOptions(){
   
   for (let i = 1; i <= 31; i++) {
     const formattedDia = formatNumber(i);
-    optionsDia.push(<MenuItem key={formattedDia} value={formattedDia}>{formattedDia}</MenuItem>);
+    optionsDia.push(<option key={formattedDia} value={formattedDia}>{formattedDia}</option>);
   }
   
   for (let i = 1; i <= 12; i++) {
     const formattedMes = formatNumber(i);
-    optionsMes.push(<MenuItem key={formattedMes} value={formattedMes}>{formattedMes}</MenuItem>);
+    optionsMes.push(<option key={formattedMes} value={formattedMes}>{formattedMes}</option>);
   }
   
   for (let i = 21; i <= 23; i++) {
     const formattedAño = formatNumber(i);
-    optionsAño.push(<MenuItem key={formattedAño} value={formattedAño}>{formattedAño}</MenuItem>);
+    optionsAño.push(<option key={formattedAño} value={formattedAño}>{formattedAño}</option>);
   }
   for (let i = 1990; i <= 2023; i++) {
-    optionsMuchosAños.push(<MenuItem key={i} value={i}>{i}</MenuItem>);
+    optionsMuchosAños.push(<option key={i} value={i}>{i}</option>);
   }
 
   return {optionsDia, optionsMes, optionsAño, optionsMuchosAños}
