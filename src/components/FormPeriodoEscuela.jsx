@@ -12,7 +12,7 @@ const FormPeriodoEscuela = ({register, escuela, defaultData}) => {
   const {optionsDia, optionsMes, optionsAño} = useOptions()
   return (
     <>
-      <Card style={{padding:"10px", marginBottom:"10px"}}>
+      <Card style={{padding:"10px", margin:"10px", marginLeft:"20px", marginRight:"20px"}}>
           <Typography style={{textAlign:"center"}}><strong>Periodo de Calificación</strong></Typography>
           <Form.Group className="mb-3 "> 
             <Typography>Desde: </Typography>
