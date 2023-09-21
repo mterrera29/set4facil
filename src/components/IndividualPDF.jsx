@@ -53,7 +53,7 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
           <Modal centered show={showModal1} onHide={handleCloseModal1}>
             <Modal.Header closeButton>
               <img className="escuelaIcon2" src={descargarPNG} alt="" />
-              <Modal.Title><Typography style={{fontSize:"30px"}}><strong>SET 4 Escuela #{index +1}</strong></Typography></Modal.Title>
+              <Modal.Title><Typography style={{fontSize:"25px"}}><strong>SET 4 Escuela #{index +1}</strong></Typography></Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>

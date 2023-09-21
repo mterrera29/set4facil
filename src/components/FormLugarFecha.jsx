@@ -44,7 +44,7 @@ const FormLugarFecha = ({register, defaultData}) => {
           <TextField  fullWidth variant="outlined" size="small" type="text" name='' onChange={handleInputChange} inputProps={{maxLength: 20}} defaultValue={defaultData ? defaultData.lugar: ""} {...register("lugar")} />
         </Form.Group>
         <Form.Group className="mb-3 ">
-        <img className="escuelaIcon" src={fechaPNG} alt="" />
+          <img className="escuelaIcon" src={fechaPNG} alt="" />
           <Form.Label style={{paddingLeft:"10px"}}><strong>Fecha (actual): </strong></Form.Label>
           <Row className="align-items-center" style={{display:"flex", flexDirection:"row", justifyContent:"center", flexWrap:"nowrap"}}>
             {

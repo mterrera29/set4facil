@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+body{
+  background-color: rgb(216, 216, 216);
+}
 .main{
   width: 100%;
   height: 100vh;
@@ -11,14 +13,26 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: var(--bgMain);
+ /*  background-image: var(--bgMain);
   background-repeat: no-repeat;
-  background-size: cover ;
-  overflow-y: scroll;
+  background-size: cover ;  */
+  overflow-y:auto;
 }
 .content{
   width: 60%;
   height: 100%;
+}
+.mitad-inferior-degradado {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #ffffff;
+  border-top-left-radius: 30px; /* Ajusta el valor según el radio de borde que desees en la esquina superior izquierda */
+  border-top-right-radius: 30px;/* Degradado de transparente a blanco */
+  opacity: 1; /* Ajusta la opacidad según tus preferencias */
+  z-index: 1000; / /* Asegura que esté por encima de otros elementos */
 }
 .cardContent{
   padding: 20px;
@@ -67,6 +81,20 @@
 .negrita{
   font-weight: bold;
 }
+.main::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+.main::-webkit-scrollbar-track {
+  background: transparent;        /* color of the tracking area */
+}
+
+.main::-webkit-scrollbar-thumb {
+  background-color: white;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid white;  /* creates padding around scroll thumb */
+}
+
 @media (max-width: 768px) {
   .custom-accordion {
     width: 100%;

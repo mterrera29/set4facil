@@ -8,7 +8,6 @@ import GeneratePDF from './components/GeneratePDF';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormCompleted from './components/FormCompleted';
-import { Card } from '@mui/material';
 import DrawerAppBar from './components/NavBar';
 
 function App() {
@@ -72,11 +71,20 @@ function App() {
   return (
     <div className='main'>
       <DrawerAppBar/>
-      <section className='content'>
+      <section className={"content"}>
         <article className='cardContent'>
           <div style={{padding:"20px", marginTop:"60px"}}>
             {
-              page ===0 &&<Button color='success' variant="contained" onClick={()=>nextPage()}>Completar SET4</Button>
+              page ===0 &&
+              <>
+                <div style={{fontSize:"40px", textAlign:"center", fontWeight:"bold", lineHeight:"1.125"}}>Completar el SET4 ahora es más facil</div>
+                <div style={{fontSize:"20px", textAlign:"center", lineHeight:"1.125", color:"rgb(82, 82, 82, 0.8)", marginBottom:"10px"}}>
+                Optimiza tu tiempo y simplifica el proceso: ¡Completa el SET4 de manera sencilla y eficiente!
+                </div>
+                <section style={{display:"flex", justifyContent:"center", width:"100%"}}>
+                  <Button color='success' variant="contained" style={{width:"100%"}} onClick={()=>nextPage()}>Completar SET4</Button>
+                </section>
+              </>
             }
             <form onChange={handleSubmit(onSubmit)}  className='form' style={{position:"relative"}} onSubmit={(e) => {
                 e.preventDefault(); // Previene la recarga de la página

@@ -47,7 +47,7 @@ const CombinedPDF = ({combinePDFs, combinedPdfUrl, reset}) => {
         <Modal centered show={showModal2} onHide={handleClose2}>
           <Modal.Header closeButton>
             <img className="escuelaIcon2" src={combinedPNG} alt="" />
-            <Modal.Title><Typography style={{fontSize:"30px"}}><strong>Un solo archivo</strong></Typography></Modal.Title>
+            <Modal.Title><Typography style={{fontSize:"25px"}}><strong>Combinar archivos</strong></Typography></Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
