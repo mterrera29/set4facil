@@ -68,7 +68,7 @@ const CombinedPDF = ({combinePDFs, combinedPdfUrl, reset}) => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button color='success' variant="contained" onClick={handleClose2}>
+            <Button color='success' variant="outlined" onClick={handleClose2}>
               Cerrar
             </Button>
           </Modal.Footer>

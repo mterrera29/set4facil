@@ -74,7 +74,7 @@ const IndividualPDF = ({index, handleGeneratePDF, data, escuela, reset, pdfUrl }
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button color='success' Button variant="contained" onClick={handleCloseModal1}>
+              <Button color='success' Button variant="outlined" onClick={handleCloseModal1}>
                 Cerrar
               </Button>
             </Modal.Footer>

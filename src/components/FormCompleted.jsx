@@ -34,6 +34,9 @@ const FormCompleted = ({data, escuelas}) => {
   return (
     <>
       <h1 className='titles' style={{fontSize:"30px", textAlign:"center", fontWeight:"bold", lineHeight:"1.125"}}>Corroborar datos</h1>
+      <div style={{fontSize:"15px", textAlign:"center", lineHeight:"1.125", color:"rgb(82, 82, 82, 0.8)", marginBottom:"10px"}}>
+        Corrobore que los datos del formulario sean correctos antes de generar el SET4
+      </div>
       <Accordion expanded={expanded2 === 'panel1'} onChange={handleChange2('panel1')} className="mb-3 custom-accordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
