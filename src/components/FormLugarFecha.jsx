@@ -35,7 +35,7 @@ const FormLugarFecha = ({register, defaultData}) => {
 
   return (
     <>
-      <h1 className='titles'>Lugar y Fecha Actual</h1>
+      <h1 className='titles' style={{fontSize:"30px", textAlign:"center", fontWeight:"bold", lineHeight:"1.125"}}>Lugar y Fecha Actual</h1>
 
       <Card style={{padding:"20px"}}>
         <Form.Group className="mb-3 ">

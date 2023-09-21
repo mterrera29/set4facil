@@ -40,7 +40,7 @@ const FormDatos = ({register, defaultData}) => {
   };
   return (
     <>
-      <h1 className='titles'>Datos Personales</h1>
+      <h1 className='titles' style={{fontSize:"30px", textAlign:"center", fontWeight:"bold", lineHeight:"1.125"}} >Datos Personales</h1>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className="mb-3 custom-accordion">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

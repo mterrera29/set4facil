@@ -33,7 +33,7 @@ const FormCompleted = ({data, escuelas}) => {
 
   return (
     <>
-      <h1 className='titles'>Corroborar datos</h1>
+      <h1 className='titles' style={{fontSize:"30px", textAlign:"center", fontWeight:"bold", lineHeight:"1.125"}}>Corroborar datos</h1>
       <Accordion expanded={expanded2 === 'panel1'} onChange={handleChange2('panel1')} className="mb-3 custom-accordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

@@ -265,7 +265,7 @@ const GeneratePDF = ({escuelas, data}) => {
   return (
     <>
       <Card style={{padding:"20px", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-        <h1 className='titles' >Generar PDF</h1>
+        <h1 className='titles' style={{fontSize:"30px", textAlign:"center", fontWeight:"bold", lineHeight:"1.125"}}>Generar PDF</h1>
         {escuelas.map((escuela, index)=>(
           <IndividualPDF key={index} index={index} handleGeneratePDF={generatePDF} data={data} escuela={escuela}  reset={reset} pdfUrl={pdfUrl}/>
           ))}
