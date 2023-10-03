@@ -1,38 +1,36 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect} from 'react';
-import { PDFDocument} from 'pdf-lib';
+import { useState, useEffect } from 'react';
+import { PDFDocument } from 'pdf-lib';
 import IndividualPDF from './IndividualPDF';
 import CombinedPDF from './CombinedPDF';
 import { handleGeneratePDF } from './handleGeneratePDF';
 import { Card } from '@mui/material';
 
-const GeneratePDF = ({escuelas, data}) => {
+const GeneratePDF = ({ escuelas, data }) => {
   const [pdfUrl, setPdfUrl] = useState();
   const [pdfUrls, setPdfUrls] = useState([]); // Lista de URLs de los PDF generados
   const [combinedPdfUrl, setCombinedPdfUrl] = useState();
-  const [ready, setReady] = useState(false)
+  const [ready, setReady] = useState(false);
 
-  const lugarFecha = `${data.lugar}, ${data.lugarFechaDia} / ${data.lugarFechaMes} / ${data.lugarFechaAño}`
+  const lugarFecha = `${data.lugar}, ${data.lugarFechaDia} / ${data.lugarFechaMes} / ${data.lugarFechaAño}`;
 
-  const reset =()=>{
-    setPdfUrls([])
-    setReady(false)
-  }
-
-  useEffect(() => {
-    if(pdfUrls.length=== escuelas.length){
-      setReady(true)
-    }
-  }, [pdfUrls, escuelas])
+  const reset = () => {
+    setPdfUrls([]);
+    setReady(false);
+  };
 
   useEffect(() => {
-    if(ready){
-      combinar()
+    if (pdfUrls.length === escuelas.length) {
+      setReady(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready])
+  }, [pdfUrls, escuelas]);
 
-  
+  useEffect(() => {
+    if (ready) {
+      combinar();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready]);
 
   /* const handleGeneratePDF = async (escuela) => {
     const pdfBytes = await fetch('/formulario.pdf').then((res) => res.arrayBuffer());
@@ -228,21 +226,32 @@ const GeneratePDF = ({escuelas, data}) => {
     setPdfUrls((prevUrls) => [...prevUrls, url]);
   }; */
 
-  console.log(pdfUrls)
+  console.log(pdfUrls);
 
   const meterPDFs = async () => {
     await escuelas.map((escuela) => {
-       handleGeneratePDF(data.escuelas[`escuela${escuela.id}`], data, lugarFecha, setPdfUrl, setPdfUrls);
+      handleGeneratePDF(
+        data.escuelas[`escuela${escuela.id}`],
+        data,
+        lugarFecha,
+        setPdfUrl,
+        setPdfUrls
+      );
     });
   };
 
-  const combinar = async ()=>{
+  const combinar = async () => {
     const pdfDoc = await PDFDocument.create();
 
     for (const pdfUrl of pdfUrls) {
-      const existingPdfBytes = await fetch(pdfUrl).then((res) => res.arrayBuffer());
+      const existingPdfBytes = await fetch(pdfUrl).then((res) =>
+        res.arrayBuffer()
+      );
       const existingPdfDoc = await PDFDocument.load(existingPdfBytes);
-      const pages = await pdfDoc.copyPages(existingPdfDoc, existingPdfDoc.getPageIndices());
+      const pages = await pdfDoc.copyPages(
+        existingPdfDoc,
+        existingPdfDoc.getPageIndices()
+      );
       pages.forEach((page) => pdfDoc.addPage(page));
     }
 
@@ -250,29 +259,81 @@ const GeneratePDF = ({escuelas, data}) => {
 
     const blob = new Blob([combinedPdfBytes], { type: 'application/pdf' });
     const url = URL.createObjectURL(blob);
-    console.log("conv")
+    console.log('conv');
     setCombinedPdfUrl(url);
-  }
+  };
 
   const combinePDFs = () => {
-      meterPDFs()
+    meterPDFs();
   };
 
   const generatePDF = async (escuela) => {
     await handleGeneratePDF(escuela, data, lugarFecha, setPdfUrl, setPdfUrls);
   };
-  
+
   return (
     <>
-      <Card style={{padding:"20px", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-        <h1 className='titles' style={{fontSize:"30px", textAlign:"center", fontWeight:"bold", lineHeight:"1.125"}}>Generar PDF</h1>
-        {escuelas.map((escuela, index)=>(
-          <IndividualPDF key={index} index={index} handleGeneratePDF={generatePDF} data={data} escuela={escuela}  reset={reset} pdfUrl={pdfUrl}/>
-          ))}
-          <CombinedPDF combinePDFs={combinePDFs} reset={reset} combinedPdfUrl={combinedPdfUrl} />
+      <Card
+        style={{
+          padding: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <h1
+          className='titles'
+          style={{
+            fontSize: '30px',
+            textAlign: 'center',
+            fontWeight: 'bold',
+            lineHeight: '1.125',
+          }}
+        >
+          Generar PDF
+        </h1>
+        <div
+          style={{
+            fontSize: '15px',
+            textAlign: 'center',
+            lineHeight: '1.125',
+            color: 'rgb(82, 82, 82, 0.8)',
+            marginBottom: '10px',
+          }}
+        >
+          Generar un PDF para cada escuela:
+        </div>
+        {escuelas.map((escuela, index) => (
+          <IndividualPDF
+            key={index}
+            index={index}
+            handleGeneratePDF={generatePDF}
+            data={data}
+            escuela={escuela}
+            reset={reset}
+            pdfUrl={pdfUrl}
+          />
+        ))}
+        <div
+          style={{
+            fontSize: '15px',
+            textAlign: 'center',
+            lineHeight: '1.125',
+            color: 'rgb(82, 82, 82, 0.8)',
+            marginBottom: '10px',
+          }}
+        >
+          Generar un solo PDF combinando los archivos de cada escuela:
+        </div>
+        <CombinedPDF
+          combinePDFs={combinePDFs}
+          reset={reset}
+          combinedPdfUrl={combinedPdfUrl}
+        />
       </Card>
     </>
-  )
-}
+  );
+};
 
-export default GeneratePDF
+export default GeneratePDF;

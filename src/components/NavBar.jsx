@@ -16,7 +16,14 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = [
+  { name: 'Inicio', dir: '/' },
+  {
+    name: 'Comentarios',
+    dir: 'https://docs.google.com/forms/d/1z9atj1iA9znx79CjLLYzf4TeZhyEly2tKxp-NJBkyco/edit',
+  },
+  { name: 'Contact', dir: '' },
+];
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -28,50 +35,55 @@ function DrawerAppBar(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        SET4Facil
+      <Typography variant='h6' sx={{ my: 2 }}>
+        SET4 Fácil
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
+          <a key={item.name} href={item.dir} className='linkWithoutStyles'>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </ListItem>
+          </a>
         ))}
       </List>
     </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar color='success' component="nav">
+      <AppBar color='success' component='nav'>
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
+            color='inherit'
+            aria-label='open drawer'
+            edge='start'
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
-          
+
           <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' }}}
+            variant='h6'
+            component='div'
+            sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
           >
-            SET4 Facil
+            SET4 Fácil
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+              <Button key={item.name} sx={{ color: '#fff' }}>
+                <a href={item.dir} className='linkWithoutStyles'>
+                  {item.name}
+                </a>
               </Button>
             ))}
           </Box>
@@ -80,7 +92,7 @@ function DrawerAppBar(props) {
       <nav>
         <Drawer
           container={container}
-          variant="temporary"
+          variant='temporary'
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
@@ -88,7 +100,10 @@ function DrawerAppBar(props) {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}

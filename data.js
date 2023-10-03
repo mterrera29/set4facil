@@ -1,14 +1,14 @@
 export const dataItems = {
   form:{
     periodoDesde:[
-      {register:"desdeDia", name:"Día"},
-      {register:"desdeMes", name:"Mes"},
-      {register:"desdeAño", name:"Año"},
+      {register:"desdeDia", name:"Día", default:"16"},
+      {register:"desdeMes", name:"Mes", default:"11"},
+      {register:"desdeAño", name:"Año", default:"22"},
     ],
     periodoHasta:[
-      {register:"hastaDia", name:"Día"},
-      {register:"hastaMes", name:"Mes"},
-      {register:"hastaAño", name:"Año"},
+      {register:"hastaDia", name:"Día", default:"15"},
+      {register:"hastaMes", name:"Mes", default:"11"},
+      {register:"hastaAño", name:"Año", default:"23"},
     ],
     datos:[
       {name:"Nombre y Apellido",maxLength:48, register:"nombreApellido"},
