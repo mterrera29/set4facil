@@ -96,7 +96,7 @@ body{
   font-weight: bold;
 }
 .main::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
+  width: 0px;               /* width of the entire scrollbar */
 }
 
 .main::-webkit-scrollbar-track {
