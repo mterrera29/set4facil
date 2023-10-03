@@ -17,12 +17,12 @@ import Button from '@mui/material/Button';
 
 const drawerWidth = 240;
 const navItems = [
-  { name: 'Inicio', dir: '/' },
+  { name: '🏠Inicio', dir: '/' },
   {
-    name: 'Comentarios',
+    name: '✍Comentarios',
     dir: 'https://docs.google.com/forms/d/1z9atj1iA9znx79CjLLYzf4TeZhyEly2tKxp-NJBkyco/edit',
   },
-  { name: 'Contact', dir: '' },
+  { name: '📧Contacto', dir: '' },
 ];
 
 function DrawerAppBar(props) {
