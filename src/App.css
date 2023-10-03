@@ -96,7 +96,7 @@ body{
   font-weight: bold;
 }
 .main::-webkit-scrollbar {
-  width: 0px;               /* width of the entire scrollbar */
+  width: 5px;               /* width of the entire scrollbar */
 }
 
 .main::-webkit-scrollbar-track {
@@ -104,9 +104,9 @@ body{
 }
 
 .main::-webkit-scrollbar-thumb {
-  background-color: white;    /* color of the scroll thumb */
+  background-color: rgb(122, 122, 122);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid white;  /* creates padding around scroll thumb */
+  border: 3px solid rgb(128, 128, 128);  /* creates padding around scroll thumb */
 }
 
 .linkWithoutStyles {
