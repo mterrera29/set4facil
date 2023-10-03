@@ -142,22 +142,26 @@ function App() {
               </form>
             </article>
           </article>
-          <footer>
-            <div
-              style={{
-                fontSize: '15px',
-                textAlign: 'center',
-                lineHeight: '1.125',
-                color: 'rgb(82, 82, 82, 0.8)',
-                padding: '10px',
-                alignSelf: 'flex-end',
-              }}
-            >
-              Sitio web NO OFICIAL. Diseñado por docentes para docentes.
-            </div>
-          </footer>
         </section>
       </main>
+      <footer
+        style={{
+          alignSelf: 'flex-end',
+        }}
+      >
+        <div
+          style={{
+            fontSize: '15px',
+            textAlign: 'center',
+            lineHeight: '1.125',
+            color: 'rgb(82, 82, 82, 0.8)',
+            padding: '10px',
+            alignSelf: 'flex-end',
+          }}
+        >
+          Sitio web NO OFICIAL. Diseñado por docentes para docentes.
+        </div>
+      </footer>
     </>
   );
 }
