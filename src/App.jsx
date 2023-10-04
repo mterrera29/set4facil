@@ -159,7 +159,7 @@ function App() {
             alignSelf: 'flex-end',
           }}
         >
-          Sitio web NO OFICIAL. Diseñado por docentes para docentes.
+          SET4 Fácil. Sitio web NO OFICIAL. Diseñado por docentes para docentes.
         </div>
       </footer>
     </>
