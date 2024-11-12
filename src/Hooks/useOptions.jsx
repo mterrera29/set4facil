@@ -19,7 +19,7 @@ export function useOptions(){
     optionsMes.push(<option key={formattedMes} value={formattedMes}>{formattedMes}</option>);
   }
   
-  for (let i = 21; i <= 23; i++) {
+  for (let i = 10; i <= 29; i++) {
     const formattedAño = formatNumber(i);
     optionsAño.push(<option key={formattedAño} value={formattedAño}>{formattedAño}</option>);
   }
