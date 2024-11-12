@@ -23,7 +23,7 @@ export function useOptions(){
     const formattedAño = formatNumber(i);
     optionsAño.push(<option key={formattedAño} value={formattedAño}>{formattedAño}</option>);
   }
-  for (let i = 1990; i <= 2023; i++) {
+  for (let i = 1990; i <= 2026; i++) {
     optionsMuchosAños.push(<option key={i} value={i}>{i}</option>);
   }
 
