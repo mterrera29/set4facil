@@ -1,8 +1,28 @@
-# React + Vite
+# set4facil 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**set4facil** es una aplicación web diseñada para facilitar el llenado del formulario SET4, un documento que los docentes de la Provincia de Buenos Aires debemos entregar todos los años. Esta herramienta busca agilizar el proceso y reducir errores, proporcionando una interfaz clara y fácil de usar.
 
-Currently, two official plugins are available:
+## 🚀 Características principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interfaz intuitiva y responsiva.
+- Carga de datos personales y laborales.
+- Generación del formulario SET4 listo para imprimir o enviar.
+- Almacenamiento local de datos (sin subir nada a servidores externos).
+- Funcionalidad completamente offline tras la primera carga.
+
+## 🖥️ Demo
+
+👉 [Acceder a la demo](https://mterrera29.github.io/set4facil/)
+
+> Puede tardar unos segundos en cargar la primera vez.
+
+## 📸 Capturas
+
+![Captura 1](https://raw.githubusercontent.com/mterrera29/set4facil/main/screenshots/formulario.png)
+![Captura 2](https://raw.githubusercontent.com/mterrera29/set4facil/main/screenshots/resultados.png)
+
+## 🛠️ Tecnologías utilizadas
+
+- **HTML**
+- **CSS**
+- **JavaScript (Vanilla)**
