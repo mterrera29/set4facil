@@ -18,8 +18,7 @@
 
 ## 📸 Capturas
 
-![Captura 1](https://raw.githubusercontent.com/mterrera29/set4facil/main/screenshots/formulario.png)
-![Captura 2](https://raw.githubusercontent.com/mterrera29/set4facil/main/screenshots/resultados.png)
+![Captura 1](./public/set4facil.png)
 
 ## 🛠️ Tecnologías utilizadas
 
